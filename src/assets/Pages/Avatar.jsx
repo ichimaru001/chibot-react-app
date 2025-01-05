@@ -1,8 +1,5 @@
 // FOCUS/GOAL
-// 1. find a way to call the timeout outside scope
-//    becuz clickSave being updated twice therefore
-//    messes with the entire pop-up code!!!!
-//    i.e, line 145 and line 159
+// 1. show error pop up when clicking on avatar icon
 // 2. yes!!! now implement avatar change possibly
 
 // NOTES
@@ -46,22 +43,6 @@ const Avatar = () => {
   const [textMsgPopUp, setTextMsgPopUp] = useState('')
   const [statusMsgPopUp, setStatusMsgPopUp] = useState('')
 
-  // const showMsgPopUp = () => {
-  //   const msgPopUpElement = document.querySelector('.message-pop-up-avatar')
-  //   if (!isMsgPopUp) {
-  //     setIsMsgPopUp(true)
-  //     // colorMsgPopUp(msgPopUpElement)
-  //     msgPopUpElement.classList.add('message-pop-up-animation')
-  //     setTimeout(() => {
-  //       msgPopUpElement.classList.remove('message-pop-up-animation')
-  //       msgPopUpElement.classList.remove('msg-pop-up-green-avatar')
-  //       msgPopUpElement.classList.remove('msg-pop-up-red-avatar')
-  //       console.log('removed classes')
-  //       // colorMsgPopUp(msgPopUpElement)
-  //       setIsMsgPopUp(false)
-  //     }, 3000)
-  //   }
-  // }
   const colorMsgPopUp = (msgPopUpElement) => {
     if (statusMsgPopUp === 'OK') {
       msgPopUpElement.classList.remove('msg-pop-up-red-avatar')
@@ -226,57 +207,6 @@ const Avatar = () => {
     }
   }, [confirmSaving, clickSave])
 
-  // useEffect(() => {
-  //   const msgPopUpElement = document.querySelector('.message-pop-up-avatar')
-  //   setIsMsgPopUp(true)
-  //   msgPopUpElement.classList.add('message-pop-up-animation')
-  //   const msgPopUp = setTimeout(() => {
-  //     msgPopUpElement.classList.remove('message-pop-up-animation')
-  //     // msgPopUpElement.classList.remove('msg-pop-up-green-avatar')
-  //     // msgPopUpElement.classList.remove('msg-pop-up-red-avatar')
-  //     setIfShowMsgPopUp(false)
-  //     // console.log('removed classes')
-  //     // colorMsgPopUp(msgPopUpElement)
-  //     setIsMsgPopUp(false)
-  //   }, 3000)
-  //   return () => {
-  //     // console.log('clean up function')
-
-  //     // if (ifShowMsgPopUp) {
-  //     clearTimeout(msgPopUp)
-  //     setIfShowMsgPopUp(false)
-  //     // }
-
-  //     msgPopUpElement.classList.remove('message-pop-up-animation')
-  //     colorMsgPopUp(document.querySelector('.message-pop-up-avatar'))
-  //   }
-  // }, [])
-
-  // ^ clickSave
-  // ^ initially ... , [ifShowMsgPopUp])
-
-  // function playMsgPopUpA() {
-  //   const msgPopUpElement = document.querySelector('.message-pop-up-avatar')
-  //   setIsMsgPopUp(true)
-  //   msgPopUpElement.classList.add('message-pop-up-animation')
-  //   if (msgAnimPlaying) {
-  //     clearTimeout(msgPopUp)
-  //   }
-  //   const msgPopUp = setTimeout(() => {
-  //     msgPopUpElement.classList.remove('message-pop-up-animation')
-  //     // msgPopUpElement.classList.remove('msg-pop-up-green-avatar')
-  //     // msgPopUpElement.classList.remove('msg-pop-up-red-avatar')
-
-  //     // setIfShowMsgPopUp(false)
-
-  //     // console.log('removed classes')
-  //     // colorMsgPopUp(msgPopUpElement)
-
-  //     // setIsMsgPopUp(false)
-  //     setMsgAnimPlaying(false)
-  //   }, 3000)
-  // }
-
   useEffect(() => {
     if (msgAnimPlaying) {
       const msgPopUpElement = document.querySelector('.message-pop-up-avatar')
@@ -303,21 +233,6 @@ const Avatar = () => {
       // }
     }
   }, [msgAnimPlaying])
-
-  // useEffect(() => {
-  //   return () => {
-  //     console.log('timeout')
-  //   }
-  // }, [showIfMsgPopUp])
-
-  // useEffect(() => {
-  //   // checks the color of status pop up msg
-  //   // initiially checks 'isMsgPopUp'
-  //   if (isMsgPopUp) {
-  //     colorMsgPopUp(document.querySelector('.message-pop-up-avatar'))
-  //     // console.log('message pop up avatar')
-  //   }
-  // }, [isMsgPopUp])
 
   useEffect(() => {
     // allows user to focus into the input after clicking edit button
@@ -509,59 +424,4 @@ const Avatar = () => {
 }
 export default Avatar
 
-// misc/throwaway code
-
-// onClick={() => {
-//   const element = document.querySelector(
-//     '.subinfo-div-avatar'
-//   )
-//   element.innerHTML = `<span className='subinfo-span-avatar'>Email</span>
-//   <input className='subinfo-input-avatar' type='text' />
-//   `
-// }}
-
-{
-  /* <span className='sidebar'>
-          <div className='sidebar-icons-div'>
-            <span
-              className='sidebar-icon profile-icon'
-              onClick={() => {
-                setTextMsgPopUp('Already in avatar')
-                setStatusMsgPopUp('ERROR')
-                showMsgPopUp()
-              }}
-            >
-              <MdAccountCircle className='sidebar-icon-imported profile-icon-chat'></MdAccountCircle>
-            </span>
-            <span
-              className='sidebar-icon sign-out-icon'
-              onClick={() => setLogOutPopUp(!logOutPopUp)}
-            >
-              <FaPowerOff className='sidebar-icon-imported sign-out-icon-chat'></FaPowerOff>
-            </span>
-          </div>
-          <div className='sidebar-channels-div'>
-            <span className='channels-header'>channels</span>
-            <div className='channels-names'>
-              <button
-                className='btn btn-channels'
-                onClick={() => navigate('/chat')}
-              >
-                casual
-              </button>
-              <button
-                className='btn btn-channels'
-                onClick={() => navigate('/chat')}
-              >
-                formal
-              </button>
-              <button
-                className='btn btn-channels'
-                onClick={() => navigate('/chat')}
-              >
-                caveman
-              </button>
-            </div>
-          </div>
-        </span> */
-}
+// misc/throwaway code fromm here on

@@ -6,21 +6,15 @@
 // use github to upload project
 
 // import react n friends
-import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 // icons
-import { FaPowerOff, FaSearch } from 'react-icons/fa'
-import { MdAccountCircle } from 'react-icons/md'
 import { PiCameraPlusBold } from 'react-icons/pi'
 import { FaEdit } from 'react-icons/fa'
-
 // data/components
 import SignOutOverlay from '../Components/SignOutOverlay'
 import Sidebar from '../Components/Sidebar'
 
 const Avatar = () => {
-  const navigate = useNavigate()
-
   const [logOutPopUp, setLogOutPopUp] = useState(false)
 
   const [userName, setUserName] = useState('Chibot-test01')
@@ -37,9 +31,6 @@ const Avatar = () => {
   const [isEditingPW, setIsEditingPW] = useState(false)
 
   const [msgAnimPlaying, setMsgAnimPlaying] = useState(false)
-  const [ifShowMsgPopUp, setIfShowMsgPopUp] = useState(false)
-  // !! ^ line may be redundant
-  const [isMsgPopUp, setIsMsgPopUp] = useState(false)
   const [textMsgPopUp, setTextMsgPopUp] = useState('')
   const [statusMsgPopUp, setStatusMsgPopUp] = useState('')
 
@@ -119,17 +110,11 @@ const Avatar = () => {
   const saveChangesFunc = () => {
     const msgPopUpElement = document.querySelector('.message-pop-up-avatar')
     if (confirmSaving) {
-      // setTextMsgPopUp('Successfully changed password')
       setStatusMsgPopUp('OK')
-      // console.log('successfully set status')
       colorMsgPopUp(msgPopUpElement)
-      // showMsgPopUp()
-      console.log('set all edits false')
-
-      console.log('click save - false')
-
+      // console.log('click save - false')
       setClickSave(false)
-
+      // console.log('set all edits false')
       setIsEditingName(false)
       setIsEditingEmail(false)
       if (isEditingPW) {
@@ -137,16 +122,14 @@ const Avatar = () => {
         expandPWDiv()
       }
     } else {
+      // console.log('error occurred!')
       setTextMsgPopUp('Error Occurred')
       setStatusMsgPopUp('ERROR')
       colorMsgPopUp(msgPopUpElement)
 
-      console.log('click save - false')
+      // console.log('click save - false')
       setClickSave(false)
       // !! ^ to show msg again
-
-      console.log('error occurred!')
-      // showMsgPopUp()
     }
   }
 
@@ -198,10 +181,7 @@ const Avatar = () => {
 
   useEffect(() => {
     // checks if need saving to disable running the function when page is first rendered
-
-    // console.log('useEffect confirmSaving')
     if (needSaving) {
-      // console.log('confirm saving array updated')
       // check if saving confirmed and then show pop-up msg
       saveChangesFunc()
     }
@@ -210,27 +190,13 @@ const Avatar = () => {
   useEffect(() => {
     if (msgAnimPlaying) {
       const msgPopUpElement = document.querySelector('.message-pop-up-avatar')
-      setIsMsgPopUp(true)
       msgPopUpElement.classList.add('message-pop-up-animation')
 
       const msgPopUp = setTimeout(() => {
         msgPopUpElement.classList.remove('message-pop-up-animation')
-        // msgPopUpElement.classList.remove('msg-pop-up-green-avatar')
-        // msgPopUpElement.classList.remove('msg-pop-up-red-avatar')
-
-        // setIfShowMsgPopUp(false)
-
-        // console.log('removed classes')
-        // colorMsgPopUp(msgPopUpElement)
-
-        // setIsMsgPopUp(false)
         setMsgAnimPlaying(false)
-        console.log('set anim false')
+        // console.log('set anim false')
       }, 3000)
-      // return () => {
-      //   clearTimeout(msgPopUp)
-      //   console.log('clean up func')
-      // }
     }
   }, [msgAnimPlaying])
 
@@ -241,7 +207,6 @@ const Avatar = () => {
     const nameInput = document.getElementById('info-input-avatar-name')
     if (isEditingEmail) {
       emailInput.focus()
-      // console.log('editing email')
     } else if (isEditingPW) {
       pwInput.focus()
     } else if (isEditingName) {
@@ -324,7 +289,6 @@ const Avatar = () => {
                         setIsEditingPW(false)
                         setIsEditingName(false)
                       }
-                      // checkNeedSaving()
                     }}
                   />
                 </div>
@@ -382,14 +346,8 @@ const Avatar = () => {
                     className='btn-save-changes-avatar'
                     onClick={() => {
                       checkEditIfSave()
-
-                      console.log('click save - true')
                       setClickSave(true)
-
-                      setIfShowMsgPopUp(true)
                       setMsgAnimPlaying(true)
-
-                      // playMsgPopUpA()
                     }}
                   >
                     Save changes

@@ -1,6 +1,5 @@
 // FOCUS/GOAL
-// 1. show error pop up when clicking on avatar icon
-// 2. yes!!! now implement avatar change possibly
+// 1. yes!!! now implement avatar change possibly
 
 // NOTES
 // use github to upload project
@@ -30,6 +29,7 @@ const Avatar = () => {
   const [isEditingEmail, setIsEditingEmail] = useState(false)
   const [isEditingPW, setIsEditingPW] = useState(false)
 
+  const [avatarPopUp, setAvatarPopUp] = useState(false)
   const [msgAnimPlaying, setMsgAnimPlaying] = useState(false)
   const [textMsgPopUp, setTextMsgPopUp] = useState('')
   const [statusMsgPopUp, setStatusMsgPopUp] = useState('')
@@ -46,7 +46,6 @@ const Avatar = () => {
       // console.log('added red')
     }
   }
-
   const checkLogOutPopUp = () => {
     const element1 = document.querySelector('.popup-div')
     const element2 = document.querySelector('.overlay-chat')
@@ -55,13 +54,10 @@ const Avatar = () => {
       element2.classList.add('log-out-pop-up-appear')
     }
   }
-
   const alreadyInAvatarWarning = () => {
-    setTextMsgPopUp('Already in avatar')
-    setStatusMsgPopUp('ERROR')
-    // showMsgPopUp()
+    setMsgAnimPlaying(true)
+    setAvatarPopUp(true)
   }
-
   const expandPWDiv = () => {
     const expandElement = document.querySelector(
       '.subinfo-pw-expand-div-avatar'
@@ -72,7 +68,6 @@ const Avatar = () => {
       expandElement.classList.add('subinfo-pw-expand-div-hidden')
     }
   }
-
   const checkNeedSaving = () => {
     if (isEditingEmail) {
       setNeedSaving(true)
@@ -106,7 +101,6 @@ const Avatar = () => {
       // console.log('hiding save changes div')
     }
   }
-
   const saveChangesFunc = () => {
     const msgPopUpElement = document.querySelector('.message-pop-up-avatar')
     if (confirmSaving) {
@@ -132,7 +126,6 @@ const Avatar = () => {
       // !! ^ to show msg again
     }
   }
-
   const checkEditIfSave = () => {
     if (isEditingEmail) {
       const editEmailInput = document.getElementById(
@@ -153,7 +146,6 @@ const Avatar = () => {
       setConfirmSaving(true)
     }
   }
-
   const userPWCheck = () => {
     const editPWInput = document.getElementById('subinfo-input-avatar-pw')
     const confirmPWInput = document.getElementById(
@@ -161,6 +153,7 @@ const Avatar = () => {
     )
     if (editPWInput.value === confirmPWInput.value) {
       setTextMsgPopUp('Successfully changed password')
+      confirmPWInput.value = ''
       setConfirmSaving(true)
       setUserPW(editPWInput.value)
       // console.log('confirm saving set to true')
@@ -170,6 +163,7 @@ const Avatar = () => {
     }
   }
 
+  // initialising/checks need saving/show save changes/expand PW div/check log out
   useEffect(() => {
     // checks if user is attempting to log out
     checkLogOutPopUp()
@@ -178,7 +172,7 @@ const Avatar = () => {
     showSaveChanges()
     expandPWDiv()
   })
-
+  // save changes func
   useEffect(() => {
     // checks if need saving to disable running the function when page is first rendered
     if (needSaving) {
@@ -186,20 +180,28 @@ const Avatar = () => {
       saveChangesFunc()
     }
   }, [confirmSaving, clickSave])
-
+  // plays pop up animation
   useEffect(() => {
-    if (msgAnimPlaying) {
+    if (msgAnimPlaying || avatarPopUp) {
       const msgPopUpElement = document.querySelector('.message-pop-up-avatar')
       msgPopUpElement.classList.add('message-pop-up-animation')
 
-      const msgPopUp = setTimeout(() => {
+      if (avatarPopUp) {
+        const msgPopUpElement = document.querySelector('.message-pop-up-avatar')
+        setTextMsgPopUp('Already in avatar')
+        msgPopUpElement.classList.remove('msg-pop-up-green-avatar')
+        msgPopUpElement.classList.add('msg-pop-up-red-avatar')
+      }
+
+      setTimeout(() => {
         msgPopUpElement.classList.remove('message-pop-up-animation')
         setMsgAnimPlaying(false)
+        setAvatarPopUp(false)
         // console.log('set anim false')
       }, 3000)
     }
   }, [msgAnimPlaying])
-
+  // focuses on input when editing
   useEffect(() => {
     // allows user to focus into the input after clicking edit button
     const emailInput = document.getElementById('subinfo-input-avatar-email')

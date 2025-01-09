@@ -1,8 +1,9 @@
 // FOCUS/GOAL
-// 1. yes!!! now implement avatar change possibly
+// 1.   ...
 
 // NOTES
 // use github to upload project
+// avoid working a lot with user pfp functionality until working with backend
 
 // import react n friends
 import { useState, useEffect } from 'react'
@@ -25,6 +26,7 @@ const Avatar = () => {
   const [needSaving, setNeedSaving] = useState(false)
   const [confirmSaving, setConfirmSaving] = useState(false)
 
+  const [isEditingPFP, setIsEditingPFP] = useState(false)
   const [isEditingName, setIsEditingName] = useState(false)
   const [isEditingEmail, setIsEditingEmail] = useState(false)
   const [isEditingPW, setIsEditingPW] = useState(false)
@@ -58,6 +60,14 @@ const Avatar = () => {
     setMsgAnimPlaying(true)
     setAvatarPopUp(true)
   }
+  const avatarSpanHighlight = () => {
+    const PFPSpan = document.getElementById('img-main-avatar-id')
+    if (isEditingPFP) {
+      PFPSpan.classList.add('img-main-avatar-activated')
+    } else {
+      PFPSpan.classList.remove('img-main-avatar-activated')
+    }
+  }
   const expandPWDiv = () => {
     const expandElement = document.querySelector(
       '.subinfo-pw-expand-div-avatar'
@@ -78,7 +88,15 @@ const Avatar = () => {
     } else if (isEditingName) {
       setNeedSaving(true)
       // console.log('name - need saving set to true')
-    } else if (!isEditingEmail || !isEditingPW || !isEditingName) {
+    } else if (isEditingPFP) {
+      setNeedSaving(true)
+      // console.log('pfp - need saving set to true')
+    } else if (
+      !isEditingEmail ||
+      !isEditingPW ||
+      !isEditingName ||
+      !isEditingPFP
+    ) {
       setNeedSaving(false)
     }
   }
@@ -87,7 +105,7 @@ const Avatar = () => {
       '.save-changes-div-avatar'
     )
 
-    if (isEditingEmail || (isEditingName && !isEditingPW)) {
+    if (isEditingEmail || isEditingPFP || isEditingName) {
       saveChangesElement.classList.add('save-changes-editing-email')
     } else {
       saveChangesElement.classList.remove('save-changes-editing-email')
@@ -111,6 +129,7 @@ const Avatar = () => {
       // console.log('set all edits false')
       setIsEditingName(false)
       setIsEditingEmail(false)
+      setIsEditingPFP(false)
       if (isEditingPW) {
         setIsEditingPW(false)
         expandPWDiv()
@@ -144,6 +163,9 @@ const Avatar = () => {
       setUserName(editNameInput.value)
       // console.log('changed name?')
       setConfirmSaving(true)
+    } else if (isEditingPFP) {
+      setTextMsgPopUp('Successfully changed profile picture')
+      setConfirmSaving(true)
     }
   }
   const userPWCheck = () => {
@@ -167,6 +189,9 @@ const Avatar = () => {
   useEffect(() => {
     // checks if user is attempting to log out
     checkLogOutPopUp()
+
+    // darkens avatar pfp circle
+    avatarSpanHighlight()
 
     checkNeedSaving()
     showSaveChanges()
@@ -247,9 +272,10 @@ const Avatar = () => {
                   className='username-main-avatar'
                   onClick={() => {
                     setIsEditingName(!isEditingName)
-                    if (isEditingPW || isEditingEmail) {
+                    if (isEditingPW || isEditingEmail || isEditingPFP) {
                       setIsEditingPW(false)
                       setIsEditingEmail(false)
+                      setIsEditingPFP(false)
                     }
                   }}
                 >
@@ -260,7 +286,18 @@ const Avatar = () => {
             </div>
             <div className='info-main-div-avatar'>
               <div className='img-main-div-avatar'>
-                <span className='img-main-avatar'>
+                <span
+                  id='img-main-avatar-id'
+                  className='img-main-avatar'
+                  onClick={() => {
+                    setIsEditingPFP(!isEditingPFP)
+                    if (isEditingPW || isEditingName || isEditingEmail) {
+                      setIsEditingPW(false)
+                      setIsEditingName(false)
+                      setIsEditingEmail(false)
+                    }
+                  }}
+                >
                   <PiCameraPlusBold className='img-main-icon-avatar' />
                 </span>
               </div>
@@ -287,9 +324,10 @@ const Avatar = () => {
                     className='subinfo-icon-avatar'
                     onClick={() => {
                       setIsEditingEmail(!isEditingEmail)
-                      if (isEditingPW || isEditingName) {
+                      if (isEditingPW || isEditingName || isEditingPFP) {
                         setIsEditingPW(false)
                         setIsEditingName(false)
+                        setIsEditingPFP(false)
                       }
                     }}
                   />
@@ -336,9 +374,10 @@ const Avatar = () => {
                     className='subinfo-icon-avatar'
                     onClick={() => {
                       setIsEditingPW(!isEditingPW)
-                      if (isEditingEmail || isEditingName) {
+                      if (isEditingEmail || isEditingName || isEditingPFP) {
                         setIsEditingEmail(false)
                         setIsEditingName(false)
+                        setIsEditingPFP(false)
                       }
                     }}
                   />
@@ -360,6 +399,7 @@ const Avatar = () => {
                       setIsEditingPW(false)
                       setIsEditingName(false)
                       setIsEditingEmail(false)
+                      setIsEditingPFP(false)
                       if (isEditingPW) {
                         expandPWDiv()
                       }

@@ -451,6 +451,9 @@ main {
     background-color: var(--complement-100);
   }
 }
+.img-main-avatar-activated {
+  background-color: var(--complement-300);
+}
 .img-main-icon-avatar {
   position: relative;
   width: 7rem;

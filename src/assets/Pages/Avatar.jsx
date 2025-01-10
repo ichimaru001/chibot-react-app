@@ -185,7 +185,7 @@ const Avatar = () => {
     }
   }
 
-  // initialising/checks need saving/show save changes/expand PW div/check log out
+  // initialising avatar
   useEffect(() => {
     // checks if user is attempting to log out
     checkLogOutPopUp()

@@ -167,23 +167,24 @@ main {
 .btn-login-signin {
   background-color: var(--primary-400);
   border: none;
-  border-radius: 0.24rem;
+  border-radius: 0.48rem;
   height: 2.8rem;
   width: 100%;
-  font-weight: 500;
+  font-weight: 550;
+  font-family: inherit;
   padding-right: 76%;
   padding-top: 0.1rem;
   color: var(--complement-500);
-  font-size: 1rem;
+  font-size: 0.86rem;
   margin-bottom: 0.5rem;
   text-overflow: hidden;
   white-space: nowrap;
-  transition: 0.03s ease-out;
+  transition: opacity 0.3s ease-out, background-color 0.18s ease-out;
   &:hover {
-    opacity: 0.9;
+    background-color: var(--primary-500);
   }
   &:active {
-    opacity: 0.7;
+    opacity: 0.2;
   }
 }
 /* BUTTON */
@@ -250,8 +251,10 @@ main {
 /* sign in */
 .header-signin {
   color: var(--complement-400);
-  margin-bottom: 0.33rem;
-  font-size: 0.9rem;
+  margin-bottom: 0.36rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
 }
 .input-signin {
   height: 2.8rem;
@@ -260,6 +263,8 @@ main {
   padding: 0rem 0.6rem;
   font-size: 1rem;
   font-weight: 500;
+  transition: 0.06s ease-out;
+  background-color: var(--complement-500);
   &:focus {
     outline: 0.14rem solid var(--complement-400);
   }
@@ -273,28 +278,34 @@ main {
   color: var(--complement-500);
 }
 .login-link-signin {
-  width: 100%;
-  color: var(--primary-400);
-  font-size: 0.76rem;
+  width: auto;
+  display: inline-block;
+  color: var(--complement-300);
+  font-size: 0.66rem;
   font-weight: 600;
+  margin-top: 0.02rem;
   margin-bottom: 22%;
+  margin-left: 0.1rem;
   cursor: pointer;
+  letter-spacing: 0.02rem;
 
-  transition: 0.01s ease-out;
+  text-decoration: underline;
+
+  transition: color 0.2s ease-out, opacity 0.03s ease-out;
 
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
   &:hover {
-    color: var(--primary-500);
+    color: var(--complement-200);
   }
   &:active {
-    opacity: 0.9;
+    opacity: 0.7;
   }
 }
 .div-signup-signin {
   display: flex;
-  align-items: end;
+  align-items: start;
   justify-content: start;
   margin-top: 10%;
 }
@@ -303,11 +314,13 @@ main {
   display: flex;
   justify-content: center;
   align-items: end;
-  margin-bottom: 4.6rem;
+  margin-bottom: 5.2rem;
 }
 .upper-header-signin {
-  color: var(--complement-500);
-  letter-spacing: 0.02rem;
+  color: var(--complement-400);
+  letter-spacing: 0.04rem;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 .main-div-signin {
   background-color: var(--accent-300);

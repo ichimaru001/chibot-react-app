@@ -1,4 +1,6 @@
+import { useNavigate } from 'react-router-dom'
 const SignIn = () => {
+  const navigate = useNavigate()
   return (
     <main className='main-signin'>
       <section className='section-signin'>
@@ -22,7 +24,12 @@ const SignIn = () => {
             <button className='btn btn-login-signin btn-signup-signin'>
               Sign up
             </button>
-            <span className='login-link-signin'>Already have an account?</span>
+            <span
+              className='login-link-signin'
+              onClick={() => navigate('/login')}
+            >
+              Already have an account?
+            </span>
           </div>
         </div>
         <div></div>

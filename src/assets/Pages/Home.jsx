@@ -18,16 +18,16 @@ const Home = () => {
           </div>
           <div className='hero-button-div'>
             <button
-              className='btn btn-home btn-sign-up-home'
-              onClick={() => navigate('/signin')}
-            >
-              Sign Up
-            </button>
-            <button
               className='btn btn-home btn-login-home'
               onClick={() => navigate('/login')}
             >
               Login
+            </button>
+            <button
+              className='btn btn-home btn-sign-up-home'
+              onClick={() => navigate('/signin')}
+            >
+              Sign Up
             </button>
           </div>
         </div>

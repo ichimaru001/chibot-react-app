@@ -131,7 +131,7 @@ main {
   border-radius: 2rem;
   border: 0.2rem solid var(--primary-400);
   background-color: var(--primary-300);
-  transition: 0.28s ease-out, background-color 0.08s ease-out;
+  transition: 0.28s ease-out, background-color 0.16s ease-out;
 }
 .btn-channels:hover {
   box-shadow: inset 0px 0.12rem 0.4rem 0.04rem rgba(0, 0, 0, 0.5);
@@ -142,23 +142,30 @@ main {
 }
 
 .btn-home {
-  font-size: 0.96rem;
-  font-weight: 500;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04rem;
   height: 3.2rem;
   width: 12.8rem;
-  border: solid 0rem;
+  border: none;
   border-radius: 0.1rem;
   color: var(--accent-300);
   background-color: var(--complement-500);
-  box-shadow: 0rem 0.4rem 0.8rem 0.1rem rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0rem 0.4rem 0.8rem 0.1rem rgba(0, 0, 0, 0.3); */
   cursor: pointer;
-  transition: 0.12s ease-out;
+  transition: 0.18s ease-out, opacity 0.3s ease-out;
+  transform: translateZ(0);
+  backface-visibility: hidden; /* Ensure clear rendering during hover */
+  will-change: transform;
+  -webkit-font-smoothing: antialiased;
 }
 .btn-home:hover {
-  transform: scale(1.02);
+  transform: scale(0.99);
+  box-shadow: 0rem 0.4rem 0.8rem 0.1rem rgba(0, 0, 0, 0.3);
 }
 .btn-home:active {
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 .btn {
@@ -201,16 +208,19 @@ main {
 }
 
 .home-header {
-  font-weight: 770;
+  /* font-family: inherit; */
+  font-weight: 850;
+  letter-spacing: 0.1rem;
   font-size: 4.2rem;
   width: auto;
   color: var(--complement-500);
 }
 .home-additional-info {
+  font-weight: 500;
   font-size: 1.4rem;
-  letter-spacing: 0.07rem;
+  letter-spacing: 0.06rem;
   margin-top: 1.2rem;
-  color: var(--primary-200);
+  color: var(--primary-300);
 }
 
 .hero-img {
@@ -230,6 +240,11 @@ main {
 .btn-sign-up-home {
   color: var(--primary-100);
   background-color: var(--accent-300);
+  font-weight: 550;
+  &:hover {
+    transform: scale(0.98);
+    box-shadow: 0rem 0.4rem 0.8rem 0.1rem rgba(0, 0, 0, 0.3);
+  }
 }
 .btn-login-home {
   color: var(--accent-300);
@@ -242,8 +257,9 @@ main {
   align-items: center;
 }
 .home-chibot {
-  color: var(--primary-300);
-  font-weight: 200;
+  color: var(--primary-400);
+  font-weight: 800;
+  letter-spacing: 0.06rem;
   margin-top: 2rem;
 }
 /* home page */
@@ -296,6 +312,7 @@ main {
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
+
   &:hover {
     color: var(--complement-200);
   }
@@ -341,31 +358,36 @@ main {
   background-color: var(--primary-300);
   color: var(--complement-500);
   border-radius: 0.4rem;
+  padding-right: 80%;
+  &:hover {
+    background-color: var(--primary-400);
+  }
 }
 .forget-password-link-login {
   color: var(--primary-300);
   font-weight: 550;
-  font-size: 0.7rem;
+  font-size: 0.66rem;
   margin-top: 0.4rem;
 
   cursor: pointer;
 
-  transition: 0.01s ease-out;
+  transition: color 0.2s ease-out, opacity 0.03s ease-out;
 
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
+
   &:hover {
     color: var(--primary-400);
   }
   &:active {
-    opacity: 0.9;
+    opacity: 0.7;
   }
 }
 .signin-info-login {
   width: 100%;
   color: var(--accent-200);
-  font-size: 0.76rem;
+  font-size: 0.66rem;
   font-weight: 600;
   margin-bottom: 22%;
 
@@ -374,11 +396,11 @@ main {
   user-select: none; /* Standard syntax */
 }
 .signup-link-login {
-  color: var(--primary-300);
-  text-decoration: none;
+  color: var(--primary-400);
+  text-decoration: underline;
   cursor: pointer;
 
-  transition: 0.01s ease-out;
+  transition: color 0.2s ease-out, opacity 0.03s ease-out;
 
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
@@ -387,7 +409,7 @@ main {
     color: var(--primary-500);
   }
   &:active {
-    opacity: 0.9;
+    opacity: 0.7;
   }
 }
 /* log in */
@@ -762,11 +784,11 @@ main {
 
   cursor: pointer;
 
-  transition: 0.1s ease-in;
+  transition: 0.3s ease-out;
 }
 .sidebar-icon:active {
   .sidebar-icon-imported {
-    opacity: 0.6;
+    opacity: 0.4;
   }
 }
 .sidebar-icon:hover {
@@ -927,6 +949,8 @@ main {
   color: black;
   top: 0.5rem;
   left: 1.2rem;
+
+  pointer-events: none;
 
   transition: 0.2s ease-out;
 }

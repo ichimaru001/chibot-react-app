@@ -1,7 +1,7 @@
-import { useNavigate } from 'react-router-dom'
+import FieldsDivLogIn from '../Components/LogIn/FieldsDivLogIn'
+import LogInBtnDiv from '../Components/LogIn/LogInBtnDiv'
 
 const LogIn = () => {
-  const navigate = useNavigate()
   return (
     <main className='main-signin'>
       <section className='section-login'>
@@ -9,31 +9,8 @@ const LogIn = () => {
           <p className='upper-header-signin'>Welcome back.</p>
         </div>
         <div className='main-div-login'>
-          <div className='fields-div-signin'>
-            <span className='header-signin'>Email</span>
-            <input type='text' spellCheck='false' className='input-signin' />
-          </div>
-          <div className='fields-div-signin'>
-            <span className='header-signin'>Password</span>
-            <input type='text' spellCheck='false' className='input-signin' />
-            <span className='forget-password-link-login'>
-              Forgot your password?
-            </span>
-          </div>
-          <div className='fields-div-signin div-signup-signin'>
-            <button className='btn btn-login-signin btn-login-login'>
-              Login
-            </button>
-            <span className='signin-info-login'>
-              Have not signed up yet?{' '}
-              <a
-                className='signup-link-login'
-                onClick={() => navigate('/signin')}
-              >
-                Sign up here.
-              </a>
-            </span>
-          </div>
+          <FieldsDivLogIn />
+          <LogInBtnDiv />
         </div>
         <div></div>
       </section>

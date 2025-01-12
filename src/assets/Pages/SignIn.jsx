@@ -1,6 +1,7 @@
-import { useNavigate } from 'react-router-dom'
+import FieldsDivSignIn from '../Components/SignIn/FieldsDivSignIn'
+import SignUpBtnDiv from '../Components/SignIn/SignUpBtnDiv'
+
 const SignIn = () => {
-  const navigate = useNavigate()
   return (
     <main className='main-signin'>
       <section className='section-signin'>
@@ -8,29 +9,8 @@ const SignIn = () => {
           <p className='upper-header-signin'>Join in the conversation!</p>
         </div>
         <div className='main-div-signin'>
-          <div className='fields-div-signin'>
-            <span className='header-signin'>Username</span>
-            <input type='text' spellCheck='false' className='input-signin' />
-          </div>
-          <div className='fields-div-signin'>
-            <span className='header-signin'>Email</span>
-            <input type='text' spellCheck='false' className='input-signin' />
-          </div>
-          <div className='fields-div-signin'>
-            <span className='header-signin'>Password</span>
-            <input type='text' spellCheck='false' className='input-signin' />
-          </div>
-          <div className='fields-div-signin div-signup-signin'>
-            <button className='btn btn-login-signin btn-signup-signin'>
-              Sign up
-            </button>
-            <span
-              className='login-link-signin'
-              onClick={() => navigate('/login')}
-            >
-              Already have an account?
-            </span>
-          </div>
+          <FieldsDivSignIn />
+          <SignUpBtnDiv />
         </div>
         <div></div>
       </section>

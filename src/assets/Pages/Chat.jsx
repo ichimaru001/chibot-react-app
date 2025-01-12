@@ -1,26 +1,21 @@
+// TO-DO LIST
+// 1.   -find a way to return a function from 'SpinHamburger' component
+//      -update the useStates to enable sidebar functionality
+
 // import react n friends
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 // import data/components
 import msgData from '../../data'
 import SignOutOverlay from '../Components/SignOutOverlay'
 import Sidebar from '../Components/Sidebar'
 import UserMessages from '../Components/Chat/UserMessages'
+import ChatBoxDiv from '../Components/Chat/ChatBoxDiv'
+import SpinHamburger from '../Components/Chat/SpinHamburger'
 
 const Chat = () => {
   const [sidebarState, setSidebarState] = useState(false)
   const [logOutPopUp, setLogOutPopUp] = useState(false)
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    const element1 = document.querySelector('.popup-div')
-    const element2 = document.querySelector('.overlay-chat')
-    if (logOutPopUp) {
-      element1.classList.add('log-out-pop-up-appear')
-      element2.classList.add('log-out-pop-up-overlay-appear')
-    }
-  })
 
   const showHideSidebar = () => {
     const sidebar = document.getElementById('sidebar-chat')
@@ -34,6 +29,15 @@ const Chat = () => {
     }
   }
 
+  useEffect(() => {
+    const element1 = document.querySelector('.popup-div')
+    const element2 = document.querySelector('.overlay-chat')
+    if (logOutPopUp) {
+      element1.classList.add('log-out-pop-up-appear')
+      element2.classList.add('log-out-pop-up-overlay-appear')
+    }
+  })
+
   return (
     <>
       {logOutPopUp && (
@@ -45,19 +49,7 @@ const Chat = () => {
 
       <header>
         <div className='header-title'></div>
-        <label className='spin-hamburger' htmlFor='spin-hamburger-input'>
-          <span className='spin-hamburger-circle'></span>
-          <input
-            type='checkbox'
-            id='spin-hamburger-input'
-            className='spin-hamburger-input-chat'
-            onClick={() => {
-              setSidebarState(!sidebarState)
-              showHideSidebar()
-            }}
-          />
-          <span className='spin-hamburger-arm'></span>
-        </label>
+        <SpinHamburger />
       </header>
       <main>
         <section className='msgs-section'>
@@ -72,14 +64,7 @@ const Chat = () => {
         ></Sidebar>
       </main>
       <footer>
-        <div className='chat-box'>
-          <span className='chat-align'>
-            <input className='chat' type='text' id='chatbox-chat' />
-            <div className='label-chat' htmlFor='chatbox-chat'>
-              Chat here
-            </div>
-          </span>
-        </div>
+        <ChatBoxDiv />
       </footer>
     </>
   )

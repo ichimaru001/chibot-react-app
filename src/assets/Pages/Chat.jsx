@@ -1,5 +1,5 @@
 // TO-DO LIST
-// 1.   -find a way to return a function from 'SpinHamburger' component
+// 1.   -find a way to return a function from 'SpinHamburger' component (line 52)
 //      -update the useStates to enable sidebar functionality
 
 // import react n friends
@@ -16,18 +16,6 @@ import SpinHamburger from '../Components/Chat/SpinHamburger'
 const Chat = () => {
   const [sidebarState, setSidebarState] = useState(false)
   const [logOutPopUp, setLogOutPopUp] = useState(false)
-
-  const showHideSidebar = () => {
-    const sidebar = document.getElementById('sidebar-chat')
-    if (sidebarState === false) {
-      sidebar.classList.remove('sidebar-hidden')
-      return
-    }
-    if (sidebarState === true) {
-      sidebar.classList.add('sidebar-hidden')
-      return
-    }
-  }
 
   useEffect(() => {
     const element1 = document.querySelector('.popup-div')
@@ -49,7 +37,10 @@ const Chat = () => {
 
       <header>
         <div className='header-title'></div>
-        <SpinHamburger />
+        <SpinHamburger
+          setSideBarStateComp={(status) => setSidebarState(status)}
+          sidebarStateComp={sidebarState}
+        />
       </header>
       <main>
         <section className='msgs-section'>

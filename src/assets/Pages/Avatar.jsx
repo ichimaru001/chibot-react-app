@@ -8,11 +8,16 @@
 // import react n friends
 import { useState, useEffect } from 'react'
 // icons
-import { PiCameraPlusBold } from 'react-icons/pi'
 import { FaEdit } from 'react-icons/fa'
 // data/components
 import SignOutOverlay from '../Components/SignOutOverlay'
 import Sidebar from '../Components/Sidebar'
+import SaveChangesDiv from '../Components/Avatar/SaveChangesDiv'
+import ExpandPWDiv from '../Components/Avatar/ExpandPWDiv'
+import PWDivAvatar from '../Components/Avatar/PWDivAvatar'
+import EmailDivAvatar from '../Components/Avatar/EmailDivAvatar'
+import ImgDivAvatar from '../Components/Avatar/ImgDivAvatar'
+import UserNameDivAvatar from '../Components/Avatar/UserNameDivAvatar'
 
 const Avatar = () => {
   const [logOutPopUp, setLogOutPopUp] = useState(false)
@@ -259,67 +264,35 @@ const Avatar = () => {
       <main className='main-avatar'>
         <section className='middle-section-avatar'>
           <div className='main-div-avatar'>
-            <div className='username-main-div-avatar'>
-              {isEditingName ? (
-                <input
-                  id='info-input-avatar-name'
-                  type='text'
-                  spellCheck='false'
-                  className='username-input-main-avatar'
-                />
-              ) : (
-                <span
-                  className='username-main-avatar'
-                  onClick={() => {
-                    setIsEditingName(!isEditingName)
-                    if (isEditingPW || isEditingEmail || isEditingPFP) {
-                      setIsEditingPW(false)
-                      setIsEditingEmail(false)
-                      setIsEditingPFP(false)
-                    }
-                  }}
-                >
-                  {userName}
-                </span>
-              )}
-              <span className='username-main-underline-avatar'></span>
-            </div>
+            <UserNameDivAvatar
+              editingUserFunc={() => {
+                setIsEditingName(!isEditingName)
+                if (isEditingPW || isEditingEmail || isEditingPFP) {
+                  setIsEditingPW(false)
+                  setIsEditingEmail(false)
+                  setIsEditingPFP(false)
+                }
+              }}
+              isEditingNameComp={isEditingName}
+              userNameComp={userName}
+            />
             <div className='info-main-div-avatar'>
-              <div className='img-main-div-avatar'>
-                <span
-                  id='img-main-avatar-id'
-                  className='img-main-avatar'
-                  onClick={() => {
-                    setIsEditingPFP(!isEditingPFP)
-                    if (isEditingPW || isEditingName || isEditingEmail) {
-                      setIsEditingPW(false)
-                      setIsEditingName(false)
-                      setIsEditingEmail(false)
-                    }
-                  }}
-                >
-                  <PiCameraPlusBold className='img-main-icon-avatar' />
-                </span>
-              </div>
+              <ImgDivAvatar
+                editingPFPFunc={() => {
+                  setIsEditingPFP(!isEditingPFP)
+                  if (isEditingPW || isEditingName || isEditingEmail) {
+                    setIsEditingPW(false)
+                    setIsEditingName(false)
+                    setIsEditingEmail(false)
+                  }
+                }}
+              />
               <div className='subinfo-important-div-avatar'>
                 <div className='subinfo-main-div-avatar'>
-                  <div className='subinfo-div-avatar'>
-                    <label
-                      className='subinfo-span-avatar'
-                      htmlFor='subinfo-input-avatar-email'
-                    >
-                      Email
-                    </label>
-                    {isEditingEmail ? (
-                      <input
-                        id='subinfo-input-avatar-email'
-                        className='subinfo-input-avatar'
-                        type='text'
-                      />
-                    ) : (
-                      <span className='subinfo-input-avatar'>{userEmail}</span>
-                    )}
-                  </div>
+                  <EmailDivAvatar
+                    isEditingEmailComp={isEditingEmail}
+                    userEmailComp={userEmail}
+                  />
                   <FaEdit
                     className='subinfo-icon-avatar'
                     onClick={() => {
@@ -334,41 +307,11 @@ const Avatar = () => {
                 </div>
                 <div className='subinfo-main-div-avatar'>
                   <div className='subinfo-div-avatar subinfo-pw-main-div-avatar'>
-                    <div className='subinfo-pw-div-avatar subinfo-div-avatar'>
-                      <label
-                        htmlFor='subinfo-input-avatar-pw'
-                        className='subinfo-span-avatar'
-                      >
-                        Password
-                      </label>
-                      {isEditingPW ? (
-                        <input
-                          id='subinfo-input-avatar-pw'
-                          className='subinfo-input-avatar'
-                          type='text'
-                        />
-                      ) : (
-                        <span className='subinfo-input-avatar'>{userPW}</span>
-                      )}
-                    </div>
-                    <div className='subinfo-pw-expand-div-avatar subinfo-pw-expand-div-hidden'>
-                      <div className='subinfo-confirm-pw-div-avatar subinfo-div-avatar'>
-                        <label
-                          htmlFor='subinfo-input-avatar-confirm-pw'
-                          className='subinfo-span-avatar'
-                        >
-                          Confirm Password
-                        </label>
-                        {/* <span className='subinfo-input-avatar'>
-                          **************
-                        </span> */}
-                        <input
-                          id='subinfo-input-avatar-confirm-pw'
-                          className='subinfo-input-avatar'
-                          type='text'
-                        />
-                      </div>
-                    </div>
+                    <PWDivAvatar
+                      isEditingPWComp={isEditingPW}
+                      userPWComp={userPW}
+                    />
+                    <ExpandPWDiv />
                   </div>
                   <FaEdit
                     className='subinfo-icon-avatar'
@@ -382,32 +325,22 @@ const Avatar = () => {
                     }}
                   />
                 </div>
-                <div className='save-changes-div-avatar save-changes-div-hidden-avatar'>
-                  <button
-                    className='btn-save-changes-avatar'
-                    onClick={() => {
-                      checkEditIfSave()
-                      setClickSave(true)
-                      setMsgAnimPlaying(true)
-                    }}
-                  >
-                    Save changes
-                  </button>
-                  <button
-                    className='btn-cancel-avatar'
-                    onClick={() => {
-                      setIsEditingPW(false)
-                      setIsEditingName(false)
-                      setIsEditingEmail(false)
-                      setIsEditingPFP(false)
-                      if (isEditingPW) {
-                        expandPWDiv()
-                      }
-                    }}
-                  >
-                    Cancel
-                  </button>
-                </div>
+                <SaveChangesDiv
+                  setEditingFalse={() => {
+                    setIsEditingPW(false)
+                    setIsEditingName(false)
+                    setIsEditingEmail(false)
+                    setIsEditingPFP(false)
+                    if (isEditingPW) {
+                      expandPWDiv()
+                    }
+                  }}
+                  saveChangesFunc={() => {
+                    checkEditIfSave()
+                    setClickSave(true)
+                    setMsgAnimPlaying(true)
+                  }}
+                />
               </div>
             </div>
           </div>

@@ -2,12 +2,7 @@ import { FaPowerOff } from 'react-icons/fa'
 import { MdAccountCircle } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 
-const Sidebar = ({
-  logOutPopUpComp,
-  setLogOutComp,
-  avatarWarning,
-  sidebarType,
-}) => {
+const Sidebar = ({ setLogOutComp, avatarWarning, sidebarType }) => {
   const navigate = useNavigate()
   let sidebarClasses = `sidebar`
   let sidebarID = `sidebar-plain`
@@ -35,7 +30,7 @@ const Sidebar = ({
         <span
           className='sidebar-icon sign-out-icon'
           onClick={() => {
-            setLogOutComp(!logOutPopUpComp)
+            setLogOutComp()
           }}
         >
           <FaPowerOff className='sidebar-icon-imported sign-out-icon-chat'></FaPowerOff>

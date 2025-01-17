@@ -1,5 +1,5 @@
 // FOCUS/GOAL
-// 1.   ...
+// 1.  neded further refining
 
 // NOTES
 // use github to upload project
@@ -346,8 +346,7 @@ const Avatar = () => {
           </div>
         </section>
         <Sidebar
-          logOutPopUpComp={logOutPopUp}
-          setLogOutComp={(LogOutStatus) => setLogOutPopUp(LogOutStatus)}
+          setLogOutComp={() => setLogOutPopUp(!logOutPopUp)}
           sidebarType={'avatar'}
           avatarWarning={alreadyInAvatarWarning}
         ></Sidebar>
@@ -357,4 +356,4 @@ const Avatar = () => {
 }
 export default Avatar
 
-// misc/throwaway code fromm here on
+// misc/throwaway code from here on

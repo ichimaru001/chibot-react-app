@@ -50,7 +50,7 @@ const Chat = () => {
         </section>
         <Sidebar
           logOutPopUpComp={logOutPopUp}
-          setLogOutComp={(logOutStatus) => setLogOutPopUp(logOutStatus)}
+          setLogOutComp={() => setLogOutPopUp(!logOutPopUp)}
           sidebarType={'chat'}
         ></Sidebar>
       </main>

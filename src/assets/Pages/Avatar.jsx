@@ -1,5 +1,5 @@
 // FOCUS/GOAL
-// 1.  neded further refining
+// 1.  ...
 
 // NOTES
 // use github to upload project
@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react'
 import { FaEdit } from 'react-icons/fa'
 // data/components
 import SignOutOverlay from '../Components/SignOutOverlay'
-import Sidebar from '../Components/Sidebar'
+import Sidebar from '../Components/Sidebar/Sidebar'
 import SaveChangesDiv from '../Components/Avatar/SaveChangesDiv'
 import ExpandPWDiv from '../Components/Avatar/ExpandPWDiv'
 import PWDivAvatar from '../Components/Avatar/PWDivAvatar'
@@ -250,8 +250,8 @@ const Avatar = () => {
     <>
       {logOutPopUp && (
         <SignOutOverlay
-          logOutPopUpComp={logOutPopUp}
-          setLogOutComp={(LogOutStatus) => setLogOutPopUp(LogOutStatus)}
+          logOutPopUp={logOutPopUp}
+          setLogOutPopUp={(LogOutStatus) => setLogOutPopUp(LogOutStatus)}
         />
       )}
       <>
@@ -346,7 +346,7 @@ const Avatar = () => {
           </div>
         </section>
         <Sidebar
-          setLogOutComp={() => setLogOutPopUp(!logOutPopUp)}
+          setLogOutPopUp={() => setLogOutPopUp(!logOutPopUp)}
           sidebarType={'avatar'}
           avatarWarning={alreadyInAvatarWarning}
         ></Sidebar>

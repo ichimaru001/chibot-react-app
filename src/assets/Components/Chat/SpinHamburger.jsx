@@ -1,11 +1,11 @@
-const SpinHamburger = ({ setSideBarStateComp, sidebarStateComp }) => {
+const SpinHamburger = ({ setSideBarState, sidebarState }) => {
   const showHideSidebar = () => {
     const sidebar = document.getElementById('sidebar-chat')
-    if (sidebarStateComp === false) {
+    if (sidebarState === false) {
       sidebar.classList.remove('sidebar-hidden')
       return
     }
-    if (sidebarStateComp === true) {
+    if (sidebarState === true) {
       sidebar.classList.add('sidebar-hidden')
       return
     }
@@ -19,7 +19,7 @@ const SpinHamburger = ({ setSideBarStateComp, sidebarStateComp }) => {
         id='spin-hamburger-input'
         className='spin-hamburger-input-chat'
         onClick={() => {
-          setSideBarStateComp(!sidebarStateComp)
+          setSideBarState(!sidebarState)
           showHideSidebar()
         }}
       />

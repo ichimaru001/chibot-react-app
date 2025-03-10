@@ -1,7 +1,12 @@
-const SignOutOverlay = ({ logOutPopUpComp, setLogOutComp }) => {
+const SignOutOverlay = ({ logOutPopUp, setLogOutPopUp }) => {
   return (
     <>
-      <div className='popup-div'>
+      <div
+        className={
+          logOutPopUp ? 'popup-div log-out-pop-up-appear' : 'popup-div'
+        }
+      >
+        {/* <div className='popup-div'> */}
         <div className='signout-popup-chat'>
           <span className='signout-popup-warning-chat'>
             Do you want to sign out?
@@ -11,7 +16,7 @@ const SignOutOverlay = ({ logOutPopUpComp, setLogOutComp }) => {
             <button
               className='btn-popup-chat btn-popup-cancel-chat'
               onClick={() => {
-                setLogOutComp(!logOutPopUpComp)
+                setLogOutPopUp()
               }}
             >
               Cancel
@@ -19,7 +24,14 @@ const SignOutOverlay = ({ logOutPopUpComp, setLogOutComp }) => {
           </div>
         </div>
       </div>
-      <span className='overlay-chat'></span>
+      <span
+        className={
+          logOutPopUp
+            ? 'log-out-pop-up-overlay-appear overlay-chat'
+            : 'overlay-chat'
+        }
+      ></span>
+      {/* <span className='overlay-chat'></span> */}
     </>
   )
 }

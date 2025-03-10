@@ -5,19 +5,18 @@ import HeroMain from '../Components/Home/HeroMain'
 import HomeLowerDiv from '../Components/Home/HomeLowerDiv'
 
 const Home = () => {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   return (
     <main className='main-home'>
       <section className='section-home'>
-        <div className='empty-div'></div>
         <div className='hero-div'>
           <HeroMain />
           <div className='hero-button-div'>
             <HomeButtons type='login' />
             <HomeButtons type='signin' />
           </div>
+          <HomeLowerDiv />
         </div>
-        <HomeLowerDiv />
       </section>
     </main>
   )

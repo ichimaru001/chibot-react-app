@@ -82,7 +82,7 @@ main {
   justify-content: center;
 }
 .main-home {
-  margin: 0;
+  padding: 0 2rem;
   width: 100vw;
   height: 100vh;
   background-color: var(--primary-500);
@@ -100,16 +100,16 @@ main {
 .section-home {
   max-width: 56rem;
   height: 100vh;
-  display: grid;
-  grid-template-rows: 0.4fr 2fr 0.8fr;
-  row-gap: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .section-signin {
   background-color: var(--accent-300);
   width: 22rem;
   height: 100vh;
   display: grid;
-  grid-template-rows: 1fr 2fr 0.8fr;
+  grid-template-rows: 28vh 2fr 0.8fr;
 }
 .section-login {
   background-color: var(--accent-300);
@@ -197,27 +197,28 @@ main {
 /* BUTTON */
 
 /* home page */
-.hero-div {
-  display: grid;
-  grid-template-rows: 0.8fr 0.4fr;
-}
+
 .hero-main {
   display: grid;
+  margin-top: -4rem;
   grid-template-columns: 1fr 1fr;
-  column-gap: 8rem;
+  /* column-gap: 8rem; */
+  column-gap: clamp(2.5rem, 5vw, 8rem);
 }
 
 .home-header {
   /* font-family: inherit; */
   font-weight: 850;
   letter-spacing: 0.1rem;
-  font-size: 4.2rem;
+  font-size: clamp(1.6rem, 4vw, 4rem);
+  /* font-size: 4.2rem; */
   width: auto;
   color: var(--complement-500);
 }
 .home-additional-info {
   font-weight: 500;
-  font-size: 1.4rem;
+  font-size: clamp(1rem, 1.4vw, 2rem);
+  /* font-size: 1.4rem; */
   letter-spacing: 0.06rem;
   margin-top: 1.2rem;
   color: var(--primary-300);
@@ -225,9 +226,13 @@ main {
 
 .hero-img {
   background-color: var(--accent-300);
-  width: auto;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 4/3;
+  overflow: hidden;
   /* min-width: 321px; */
   height: auto;
+  object-fit: cover;
 }
 
 .hero-button-div {
@@ -253,14 +258,15 @@ main {
 
 .home-lower-div {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
+  left: 47.5vw;
 }
 .home-chibot {
   color: var(--primary-400);
   font-weight: 800;
   letter-spacing: 0.06rem;
-  margin-top: 2rem;
+  margin-top: 8rem;
+  font-size: clamp(0.8rem, 1.4vw, 1rem);
 }
 /* home page */
 
@@ -331,7 +337,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: end;
-  margin-bottom: 5.2rem;
+  margin-bottom: 3rem;
 }
 .upper-header-signin {
   color: var(--complement-400);
@@ -678,7 +684,7 @@ main {
 .overlay-chat {
   position: fixed;
   z-index: 2;
-  background-color: rgba(30, 24, 37, 0.7);
+  background-color: rgba(30, 24, 37, 0.8);
   width: 100vw;
   height: 100vh;
   /* opacity: 0; */
@@ -698,23 +704,25 @@ main {
 }
 .signout-popup-chat {
   position: absolute;
-  display: grid;
-  margin-top: 14rem;
-  grid-template-rows: 1fr 1fr;
+  display: flex;
+  margin-top: 16.5rem;
+  /* grid-template-rows: 1fr 1fr; */
+  flex-direction: column;
+  row-gap: 3rem;
   justify-content: center;
   align-items: center;
   background-color: var(--accent-300);
   border-radius: 0.4rem;
   padding-top: 0.6rem;
-  width: 18rem;
-  height: 12rem;
+  width: 22rem;
+  height: 16rem;
   opacity: 100%;
-  top: 36%;
-  left: 41%;
+  /* top: 36%;
+  left: 41%; */
 }
 .signout-popup-warning-chat {
   color: var(--complement-500);
-  font-size: 0.96rem;
+  font-size: 1rem;
   margin-top: 2.5rem;
 }
 .signout-popup-btn-div-chat {
@@ -728,8 +736,11 @@ main {
   background-color: var(--primary-300);
   border: none;
   border-radius: 0.3rem;
-  padding: 0.7rem 1.2rem;
+  padding: 0.9rem 1.2rem;
   cursor: pointer;
+  width: 6rem;
+  font-size: 0.96rem;
+  /* text-overflow: clip; */
 
   transition: 0.06s ease-in;
   &:hover {
@@ -747,9 +758,9 @@ main {
 /* -overlay */
 .msgs-section {
   position: relative;
-  margin-top: 4.4rem;
+  margin-top: 5.4rem;
   margin-bottom: 5rem;
-  width: 28%;
+  width: 40vw;
   height: 2000px;
   z-index: -1;
 }
@@ -930,10 +941,10 @@ main {
   height: 4.6rem;
 }
 .chat-align {
-  width: 40%;
+  width: clamp(30rem, 60vw, 70em);
   position: relative;
   top: 1rem;
-  left: 10rem;
+  left: clamp(6rem, 18vw, 20rem);
 }
 .chat {
   position: absolute;
@@ -946,9 +957,10 @@ main {
 }
 .label-chat {
   position: absolute;
-  color: black;
-  top: 0.5rem;
-  left: 1.2rem;
+  font-weight: 500;
+  color: var(--complement-100);
+  top: 0.64rem;
+  left: 1rem;
 
   pointer-events: none;
 

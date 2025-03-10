@@ -1,18 +1,32 @@
 import { FaPowerOff } from 'react-icons/fa'
 import { MdAccountCircle } from 'react-icons/md'
-import { useNavigate } from 'react-router-dom'
+import ChannelSidebar from './ChannelSidebar'
 
-const Sidebar = ({ setLogOutComp, avatarWarning, sidebarType }) => {
-  const navigate = useNavigate()
-  let sidebarClasses = `sidebar`
-  let sidebarID = `sidebar-plain`
-  if (sidebarType === 'chat') {
-    sidebarClasses = `sidebar sidebar-hidden`
-    sidebarID = `sidebar-chat`
-  }
+const Sidebar = ({
+  setLogOutPopUp,
+  avatarWarning,
+  sidebarType,
+  sidebarState,
+}) => {
+  // let sidebarClasses = `sidebar`
+  // let sidebarID = `sidebar-plain`
+  // if (sidebarType === 'chat') {
+  //   sidebarClasses = `sidebar sidebar-hidden`
+  //   sidebarID = `sidebar-chat`
+  // }
 
   return (
-    <span id={sidebarID} className={sidebarClasses}>
+    <span
+      id={sidebarType === 'chat' ? 'sidebar-chat' : 'sidebar-plain'}
+      className={
+        sidebarType === 'chat'
+          ? sidebarState
+            ? 'sidebar'
+            : 'sidebar sidebar-hidden'
+          : 'sidebar'
+      }
+      // className={sidebarState ? 'sidebar' : 'sidebar sidebar-hidden'}
+    >
       <div className='sidebar-icons-div'>
         <span
           className='sidebar-icon profile-icon'
@@ -30,7 +44,8 @@ const Sidebar = ({ setLogOutComp, avatarWarning, sidebarType }) => {
         <span
           className='sidebar-icon sign-out-icon'
           onClick={() => {
-            setLogOutComp()
+            setLogOutPopUp()
+            // console.log('set log out')
           }}
         >
           <FaPowerOff className='sidebar-icon-imported sign-out-icon-chat'></FaPowerOff>
@@ -38,7 +53,8 @@ const Sidebar = ({ setLogOutComp, avatarWarning, sidebarType }) => {
       </div>
       <div className='sidebar-channels-div'>
         <span className='channels-header'>channels</span>
-        <div className='channels-names'>
+        <ChannelSidebar />
+        {/* <div className='channels-names'>
           <button
             className='btn btn-channels'
             onClick={() => navigate('/chat')}
@@ -57,7 +73,7 @@ const Sidebar = ({ setLogOutComp, avatarWarning, sidebarType }) => {
           >
             caveman
           </button>
-        </div>
+        </div> */}
       </div>
     </span>
   )

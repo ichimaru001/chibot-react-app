@@ -1,0 +1,2 @@
+// GOAL //
+1. try to integrate backend into project

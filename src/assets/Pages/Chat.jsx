@@ -1,6 +1,5 @@
 // TO-DO LIST
-// 1.   -find a way to return a function from 'SpinHamburger' component (line 52)
-//      -update the useStates to enable sidebar functionality
+// 1.   ...
 
 // import react n friends
 import { useState, useEffect } from 'react'
@@ -8,7 +7,7 @@ import { useState, useEffect } from 'react'
 // import data/components
 import msgData from '../../data'
 import SignOutOverlay from '../Components/SignOutOverlay'
-import Sidebar from '../Components/Sidebar'
+import Sidebar from '../Components/Sidebar/Sidebar'
 import UserMessages from '../Components/Chat/UserMessages'
 import ChatBoxDiv from '../Components/Chat/ChatBoxDiv'
 import SpinHamburger from '../Components/Chat/SpinHamburger'
@@ -17,29 +16,29 @@ const Chat = () => {
   const [sidebarState, setSidebarState] = useState(false)
   const [logOutPopUp, setLogOutPopUp] = useState(false)
 
-  useEffect(() => {
-    const element1 = document.querySelector('.popup-div')
-    const element2 = document.querySelector('.overlay-chat')
-    if (logOutPopUp) {
-      element1.classList.add('log-out-pop-up-appear')
-      element2.classList.add('log-out-pop-up-overlay-appear')
-    }
-  })
+  // useEffect(() => {
+  //   const element1 = document.querySelector('.popup-div')
+  //   const element2 = document.querySelector('.overlay-chat')
+  //   if (logOutPopUp) {
+  //     // element1.classList.add('log-out-pop-up-appear')
+  //     element2.classList.add('log-out-pop-up-overlay-appear')
+  //   }
+  // })
 
   return (
     <>
       {logOutPopUp && (
         <SignOutOverlay
-          logOutPopUpComp={logOutPopUp}
-          setLogOutComp={(LogOutStatus) => setLogOutPopUp(LogOutStatus)}
+          logOutPopUp={logOutPopUp}
+          setLogOutPopUp={() => setLogOutPopUp(!logOutPopUp)}
         />
       )}
 
       <header>
         <div className='header-title'></div>
         <SpinHamburger
-          setSideBarStateComp={(status) => setSidebarState(status)}
-          sidebarStateComp={sidebarState}
+          setSideBarState={(status) => setSidebarState(status)}
+          sidebarState={sidebarState}
         />
       </header>
       <main>
@@ -49,9 +48,9 @@ const Chat = () => {
           })}
         </section>
         <Sidebar
-          logOutPopUpComp={logOutPopUp}
-          setLogOutComp={() => setLogOutPopUp(!logOutPopUp)}
+          setLogOutPopUp={() => setLogOutPopUp(!logOutPopUp)}
           sidebarType={'chat'}
+          sidebarState={sidebarState}
         ></Sidebar>
       </main>
       <footer>

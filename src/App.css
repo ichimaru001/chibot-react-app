@@ -94,6 +94,13 @@ main {
   width: 100vw;
   height: 100vh;
 }
+.main-chat-mobile-sidebar {
+  background-color: rgba(30, 24, 37, 0.8);
+  transition: 0.3s ease-in-out;
+}
+.main-chat {
+  transition: 0.2s ease-in-out;
+}
 /* MAIN */
 
 /* SECTION */
@@ -763,6 +770,12 @@ main {
   width: 40vw;
   height: 2000px;
   z-index: -1;
+  /* opacity: 0.4; */
+  /* &::after {
+    background-color: #191320;
+    width: 200rem;
+    height: 200rem;
+  } */
 }
 .sidebar {
   width: 256px;
@@ -930,6 +943,10 @@ main {
   color: var(--complement-500);
 } */
 
+.chat-box-hidden {
+  opacity: 0;
+  transition: 0.2s ease-in;
+}
 .chat-box {
   position: fixed;
   display: flex;
@@ -945,6 +962,7 @@ main {
   position: relative;
   top: 1rem;
   left: clamp(6rem, 18vw, 20rem);
+  transition: 0.4s ease-out;
 }
 .chat {
   position: absolute;

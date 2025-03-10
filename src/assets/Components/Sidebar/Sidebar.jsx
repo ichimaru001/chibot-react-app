@@ -8,13 +8,6 @@ const Sidebar = ({
   sidebarType,
   sidebarState,
 }) => {
-  // let sidebarClasses = `sidebar`
-  // let sidebarID = `sidebar-plain`
-  // if (sidebarType === 'chat') {
-  //   sidebarClasses = `sidebar sidebar-hidden`
-  //   sidebarID = `sidebar-chat`
-  // }
-
   return (
     <span
       id={sidebarType === 'chat' ? 'sidebar-chat' : 'sidebar-plain'}
@@ -25,7 +18,6 @@ const Sidebar = ({
             : 'sidebar sidebar-hidden'
           : 'sidebar'
       }
-      // className={sidebarState ? 'sidebar' : 'sidebar sidebar-hidden'}
     >
       <div className='sidebar-icons-div'>
         <span
@@ -45,7 +37,6 @@ const Sidebar = ({
           className='sidebar-icon sign-out-icon'
           onClick={() => {
             setLogOutPopUp()
-            // console.log('set log out')
           }}
         >
           <FaPowerOff className='sidebar-icon-imported sign-out-icon-chat'></FaPowerOff>
@@ -54,26 +45,6 @@ const Sidebar = ({
       <div className='sidebar-channels-div'>
         <span className='channels-header'>channels</span>
         <ChannelSidebar />
-        {/* <div className='channels-names'>
-          <button
-            className='btn btn-channels'
-            onClick={() => navigate('/chat')}
-          >
-            casual
-          </button>
-          <button
-            className='btn btn-channels'
-            onClick={() => navigate('/chat')}
-          >
-            formal
-          </button>
-          <button
-            className='btn btn-channels'
-            onClick={() => navigate('/chat')}
-          >
-            caveman
-          </button>
-        </div> */}
       </div>
     </span>
   )

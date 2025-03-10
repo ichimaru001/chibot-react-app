@@ -14,16 +14,14 @@ import SpinHamburger from '../Components/Chat/SpinHamburger'
 
 const Chat = () => {
   const [sidebarState, setSidebarState] = useState(false)
+  const [ifUserOnMobile, setIfUserOnMobile] = useState(false)
   const [logOutPopUp, setLogOutPopUp] = useState(false)
 
-  // useEffect(() => {
-  //   const element1 = document.querySelector('.popup-div')
-  //   const element2 = document.querySelector('.overlay-chat')
-  //   if (logOutPopUp) {
-  //     // element1.classList.add('log-out-pop-up-appear')
-  //     element2.classList.add('log-out-pop-up-overlay-appear')
-  //   }
-  // })
+  useEffect(() => {
+    if (window.innerWidth < 900) {
+      setIfUserOnMobile(true)
+    }
+  }, [])
 
   return (
     <>
@@ -41,7 +39,13 @@ const Chat = () => {
           sidebarState={sidebarState}
         />
       </header>
-      <main>
+      <main
+        className={
+          ifUserOnMobile && sidebarState
+            ? 'main-chat-mobile-sidebar'
+            : 'main-chat'
+        }
+      >
         <section className='msgs-section'>
           {msgData.map((msg) => {
             return <UserMessages {...msg} key={msg.id} />
@@ -54,7 +58,10 @@ const Chat = () => {
         ></Sidebar>
       </main>
       <footer>
-        <ChatBoxDiv />
+        <ChatBoxDiv
+          sidebarState={sidebarState}
+          ifUserOnMobile={ifUserOnMobile}
+        />
       </footer>
     </>
   )
@@ -63,26 +70,3 @@ const Chat = () => {
 export default Chat
 
 // misc./throwaway code
-
-// useEffect(() => {
-//   const element1 = document.querySelector('.signout-popup-div-chat')
-//   const element2 = document.querySelector('.overlay-chat')
-//   if (logOutPopUp) {
-//     element1.classList.remove('log-out-pop-up-appear')
-//     element2.classList.remove('log-out-pop-up-appear')
-//     console.log('hi')
-//   }
-// }, [logOutPopUp])
-
-// <div className='msg' key={id}>
-//   <div className='msg-pfp-div'>
-//     <span className='msg-user-pfp'></span>
-//   </div>
-//   <div className='msg-div'>
-//     <div className='msg-header'>
-//       <span className='msg-user'>{user}</span>
-//       <span className='msg-time'>{time}</span>
-//     </div>
-//     <span className='msg-text'>{text}</span>
-//   </div>
-// </div>

@@ -945,7 +945,7 @@ main {
 
 .chat-box-hidden {
   opacity: 0;
-  transition: 0.2s ease-in;
+  transition: 0.1s ease-out;
 }
 .chat-box {
   position: fixed;
@@ -962,7 +962,7 @@ main {
   position: relative;
   top: 1rem;
   left: clamp(6rem, 18vw, 20rem);
-  transition: 0.4s ease-out;
+  transition: 0.6s ease-out;
 }
 .chat {
   position: absolute;

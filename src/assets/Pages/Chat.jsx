@@ -15,13 +15,24 @@ import SpinHamburger from '../Components/Chat/SpinHamburger'
 const Chat = () => {
   const [sidebarState, setSidebarState] = useState(false)
   const [ifUserOnMobile, setIfUserOnMobile] = useState(false)
+  const [windowWidth, changeWindowWidth] = useState(window.innerWidth)
   const [logOutPopUp, setLogOutPopUp] = useState(false)
 
-  useEffect(() => {
-    if (window.innerWidth < 900) {
+  const changeUserMobileState = () => {
+    changeWindowWidth(window.innerWidth)
+    if (windowWidth < 900) {
       setIfUserOnMobile(true)
+    } else {
+      setIfUserOnMobile(false)
     }
-  }, [])
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', changeUserMobileState)
+    return () => {
+      window.removeEventListener('resize', changeUserMobileState)
+    }
+  }, [windowWidth])
 
   return (
     <>

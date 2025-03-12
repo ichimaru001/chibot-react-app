@@ -1,5 +1,6 @@
 import { FaPowerOff } from 'react-icons/fa'
 import { MdAccountCircle } from 'react-icons/md'
+import { useNavigate } from 'react-router-dom'
 import ChannelSidebar from './ChannelSidebar'
 
 const Sidebar = ({
@@ -8,6 +9,8 @@ const Sidebar = ({
   sidebarType,
   sidebarState,
 }) => {
+  const navigate = useNavigate()
+
   return (
     <span
       id={sidebarType === 'chat' ? 'sidebar-chat' : 'sidebar-plain'}

@@ -18,6 +18,7 @@ const Chat = () => {
   const [windowWidth, changeWindowWidth] = useState(window.innerWidth)
   const [logOutPopUp, setLogOutPopUp] = useState(false)
 
+  // if window width < 900, detects user on mobile
   const changeUserMobileState = () => {
     changeWindowWidth(window.innerWidth)
     if (windowWidth < 900) {
@@ -26,7 +27,7 @@ const Chat = () => {
       setIfUserOnMobile(false)
     }
   }
-
+  // detects every time user resizes window
   useEffect(() => {
     window.addEventListener('resize', changeUserMobileState)
     return () => {

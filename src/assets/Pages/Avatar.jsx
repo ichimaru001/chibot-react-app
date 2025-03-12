@@ -41,48 +41,48 @@ const Avatar = () => {
   const [textMsgPopUp, setTextMsgPopUp] = useState('')
   const [statusMsgPopUp, setStatusMsgPopUp] = useState('')
 
-  const colorMsgPopUp = (msgPopUpElement) => {
-    if (statusMsgPopUp === 'OK') {
-      msgPopUpElement.classList.remove('msg-pop-up-red-avatar')
-      msgPopUpElement.classList.add('msg-pop-up-green-avatar')
-      // console.log('added green')
-    }
-    if (statusMsgPopUp === 'ERROR') {
-      msgPopUpElement.classList.remove('msg-pop-up-green-avatar')
-      msgPopUpElement.classList.add('msg-pop-up-red-avatar')
-      // console.log('added red')
-    }
-  }
-  const checkLogOutPopUp = () => {
-    const element1 = document.querySelector('.popup-div')
-    const element2 = document.querySelector('.overlay-chat')
-    if (logOutPopUp) {
-      element1.classList.add('log-out-pop-up-appear')
-      element2.classList.add('log-out-pop-up-appear')
-    }
-  }
-  const alreadyInAvatarWarning = () => {
-    setMsgAnimPlaying(true)
-    setAvatarPopUp(true)
-  }
-  const avatarSpanHighlight = () => {
-    const PFPSpan = document.getElementById('img-main-avatar-id')
-    if (isEditingPFP) {
-      PFPSpan.classList.add('img-main-avatar-activated')
-    } else {
-      PFPSpan.classList.remove('img-main-avatar-activated')
-    }
-  }
-  const expandPWDiv = () => {
-    const expandElement = document.querySelector(
-      '.subinfo-pw-expand-div-avatar'
-    )
-    if (isEditingPW) {
-      expandElement.classList.remove('subinfo-pw-expand-div-hidden')
-    } else {
-      expandElement.classList.add('subinfo-pw-expand-div-hidden')
-    }
-  }
+  // const colorMsgPopUp = (msgPopUpElement) => {
+  //   if (statusMsgPopUp === 'OK') {
+  //     msgPopUpElement.classList.remove('msg-pop-up-red-avatar')
+  //     msgPopUpElement.classList.add('msg-pop-up-green-avatar')
+  //     // console.log('added green')
+  //   }
+  //   if (statusMsgPopUp === 'ERROR') {
+  //     msgPopUpElement.classList.remove('msg-pop-up-green-avatar')
+  //     msgPopUpElement.classList.add('msg-pop-up-red-avatar')
+  //     // console.log('added red')
+  //   }
+  // }
+  // const checkLogOutPopUp = () => {
+  //   const element1 = document.querySelector('.popup-div')
+  //   const element2 = document.querySelector('.overlay-chat')
+  //   if (logOutPopUp) {
+  //     element1.classList.add('log-out-pop-up-appear')
+  //     element2.classList.add('log-out-pop-up-appear')
+  //   }
+  // }
+  // const alreadyInAvatarWarning = () => {
+  //   setMsgAnimPlaying(true)
+  //   setAvatarPopUp(true)
+  // }
+  // const avatarSpanHighlight = () => {
+  //   const PFPSpan = document.getElementById('img-main-avatar-id')
+  //   if (isEditingPFP) {
+  //     PFPSpan.classList.add('img-main-avatar-activated')
+  //   } else {
+  //     PFPSpan.classList.remove('img-main-avatar-activated')
+  //   }
+  // }
+  // const expandPWDiv = () => {
+  //   const expandElement = document.querySelector(
+  //     '.subinfo-pw-expand-div-avatar'
+  //   )
+  //   if (isEditingPW) {
+  //     expandElement.classList.remove('subinfo-pw-expand-div-hidden')
+  //   } else {
+  //     expandElement.classList.add('subinfo-pw-expand-div-hidden')
+  //   }
+  // }
   const checkNeedSaving = () => {
     if (isEditingEmail) {
       setNeedSaving(true)
@@ -105,30 +105,30 @@ const Avatar = () => {
       setNeedSaving(false)
     }
   }
-  const showSaveChanges = () => {
-    const saveChangesElement = document.querySelector(
-      '.save-changes-div-avatar'
-    )
+  // const showSaveChanges = () => {
+  //   const saveChangesElement = document.querySelector(
+  //     '.save-changes-div-avatar'
+  //   )
 
-    if (isEditingEmail || isEditingPFP || isEditingName) {
-      saveChangesElement.classList.add('save-changes-editing-email')
-    } else {
-      saveChangesElement.classList.remove('save-changes-editing-email')
-    }
+  //   if (isEditingEmail || isEditingPFP || isEditingName) {
+  //     saveChangesElement.classList.add('save-changes-editing-email')
+  //   } else {
+  //     saveChangesElement.classList.remove('save-changes-editing-email')
+  //   }
 
-    if (needSaving) {
-      saveChangesElement.classList.remove('save-changes-div-hidden-avatar')
-      // console.log('showing save changes div')
-    } else {
-      saveChangesElement.classList.add('save-changes-div-hidden-avatar')
-      // console.log('hiding save changes div')
-    }
-  }
+  //   if (needSaving) {
+  //     saveChangesElement.classList.remove('save-changes-div-hidden-avatar')
+  //     // console.log('showing save changes div')
+  //   } else {
+  //     saveChangesElement.classList.add('save-changes-div-hidden-avatar')
+  //     // console.log('hiding save changes div')
+  //   }
+  // }
   const saveChangesFunc = () => {
-    const msgPopUpElement = document.querySelector('.message-pop-up-avatar')
+    // const msgPopUpElement = document.querySelector('.message-pop-up-avatar')
     if (confirmSaving) {
       setStatusMsgPopUp('OK')
-      colorMsgPopUp(msgPopUpElement)
+      // colorMsgPopUp(msgPopUpElement)
       // console.log('click save - false')
       setClickSave(false)
       // console.log('set all edits false')
@@ -137,13 +137,13 @@ const Avatar = () => {
       setIsEditingPFP(false)
       if (isEditingPW) {
         setIsEditingPW(false)
-        expandPWDiv()
+        // expandPWDiv()
       }
     } else {
       // console.log('error occurred!')
       setTextMsgPopUp('Error Occurred')
       setStatusMsgPopUp('ERROR')
-      colorMsgPopUp(msgPopUpElement)
+      // colorMsgPopUp(msgPopUpElement)
 
       // console.log('click save - false')
       setClickSave(false)
@@ -193,14 +193,14 @@ const Avatar = () => {
   // initialising avatar
   useEffect(() => {
     // checks if user is attempting to log out
-    checkLogOutPopUp()
+    // checkLogOutPopUp()
 
     // darkens avatar pfp circle
-    avatarSpanHighlight()
+    // avatarSpanHighlight()
 
     checkNeedSaving()
-    showSaveChanges()
-    expandPWDiv()
+    // showSaveChanges()
+    // expandPWDiv()
   })
   // save changes func
   useEffect(() => {
@@ -214,23 +214,24 @@ const Avatar = () => {
   useEffect(() => {
     if (msgAnimPlaying || avatarPopUp) {
       const msgPopUpElement = document.querySelector('.message-pop-up-avatar')
-      msgPopUpElement.classList.add('message-pop-up-animation')
+      // msgPopUpElement.classList.add('message-pop-up-animation')
 
-      if (avatarPopUp) {
-        const msgPopUpElement = document.querySelector('.message-pop-up-avatar')
-        setTextMsgPopUp('Already in avatar')
-        msgPopUpElement.classList.remove('msg-pop-up-green-avatar')
-        msgPopUpElement.classList.add('msg-pop-up-red-avatar')
-      }
+      // if (avatarPopUp) {
+      //   //   const msgPopUpElement = document.querySelector('.message-pop-up-avatar')
+      //   setTextMsgPopUp('Already in avatar')
+      //   //   msgPopUpElement.classList.remove('msg-pop-up-green-avatar')
+      //   //   msgPopUpElement.classList.add('msg-pop-up-red-avatar')
+      // }
 
       setTimeout(() => {
-        msgPopUpElement.classList.remove('message-pop-up-animation')
+        // msgPopUpElement.classList.remove('message-pop-up-animation')
         setMsgAnimPlaying(false)
         setAvatarPopUp(false)
         // console.log('set anim false')
       }, 3000)
     }
   }, [msgAnimPlaying])
+
   // focuses on input when editing
   useEffect(() => {
     // allows user to focus into the input after clicking edit button
@@ -255,9 +256,25 @@ const Avatar = () => {
         />
       )}
       <>
-        <div className='popup-div-avatar'>
+        <div
+          className={
+            logOutPopUp
+              ? 'log-out-pop-up-appear popup-div-avatar'
+              : 'popup-div-avatar'
+          }
+        >
           <div className='popup-grid-div-avatar'>
-            <span className='message-pop-up-avatar'>{textMsgPopUp}</span>
+            <span
+              className={`${msgAnimPlaying && 'message-pop-up-animation'} ${
+                avatarPopUp && 'msg-pop-up-red-avatar'
+              } ${
+                statusMsgPopUp === 'OK'
+                  ? 'msg-pop-up-green-avatar message-pop-up-avatar'
+                  : 'msg-pop-up-red-avatar message-pop-up-avatar'
+              } message-pop-up-avatar`}
+            >
+              {textMsgPopUp}
+            </span>
           </div>
         </div>
       </>
@@ -286,6 +303,7 @@ const Avatar = () => {
                     setIsEditingEmail(false)
                   }
                 }}
+                isEditingPFP={isEditingPFP}
               />
               <div className='subinfo-important-div-avatar'>
                 <div className='subinfo-main-div-avatar'>
@@ -311,7 +329,7 @@ const Avatar = () => {
                       isEditingPWComp={isEditingPW}
                       userPWComp={userPW}
                     />
-                    <ExpandPWDiv />
+                    <ExpandPWDiv isEditingPW={isEditingPW} />
                   </div>
                   <FaEdit
                     className='subinfo-icon-avatar'
@@ -332,7 +350,7 @@ const Avatar = () => {
                     setIsEditingEmail(false)
                     setIsEditingPFP(false)
                     if (isEditingPW) {
-                      expandPWDiv()
+                      // expandPWDiv()
                     }
                   }}
                   saveChangesFunc={() => {
@@ -340,6 +358,10 @@ const Avatar = () => {
                     setClickSave(true)
                     setMsgAnimPlaying(true)
                   }}
+                  isEditingEmail={isEditingEmail}
+                  isEditingPFP={isEditingPFP}
+                  isEditingName={isEditingName}
+                  needSaving={needSaving}
                 />
               </div>
             </div>
@@ -348,7 +370,12 @@ const Avatar = () => {
         <Sidebar
           setLogOutPopUp={() => setLogOutPopUp(!logOutPopUp)}
           sidebarType={'avatar'}
-          avatarWarning={alreadyInAvatarWarning}
+          avatarWarning={() => {
+            // already in avatar warning
+            setTextMsgPopUp('Already in avatar')
+            setMsgAnimPlaying(true)
+            setAvatarPopUp(true)
+          }}
         ></Sidebar>
       </main>
     </>

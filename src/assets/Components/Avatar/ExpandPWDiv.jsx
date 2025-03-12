@@ -1,6 +1,12 @@
-const ExpandPWDiv = () => {
+const ExpandPWDiv = ({ isEditingPW }) => {
   return (
-    <div className='subinfo-pw-expand-div-avatar subinfo-pw-expand-div-hidden'>
+    <div
+      className={
+        isEditingPW
+          ? 'subinfo-pw-expand-div-avatar'
+          : 'subinfo-pw-expand-div-hidden subinfo-pw-expand-div-avatar'
+      }
+    >
       <div className='subinfo-confirm-pw-div-avatar subinfo-div-avatar'>
         <label
           htmlFor='subinfo-input-avatar-confirm-pw'

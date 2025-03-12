@@ -1,6 +1,23 @@
-const SaveChangesDiv = ({ setEditingFalse, saveChangesFunc }) => {
+const SaveChangesDiv = ({
+  setEditingFalse,
+  saveChangesFunc,
+  isEditingEmail,
+  isEditingPFP,
+  isEditingName,
+  needSaving,
+}) => {
   return (
-    <div className='save-changes-div-avatar save-changes-div-hidden-avatar'>
+    <div
+      className={`${
+        isEditingEmail || isEditingPFP || isEditingName
+          ? 'save-changes-editing-email'
+          : ''
+      } ${
+        needSaving
+          ? 'save-changes-div-avatar'
+          : 'save-changes-div-hidden-avatar save-changes-div-avatar'
+      } `}
+    >
       <button
         className='btn-save-changes-avatar'
         onClick={() => {

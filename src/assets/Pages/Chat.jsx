@@ -42,17 +42,11 @@ const Chat = () => {
 
   return (
     <>
-      {logOutPopUp && (
-        <SignOutOverlay
-          logOutPopUp={logOutPopUp}
-          setLogOutPopUp={() => setLogOutPopUp(!logOutPopUp)}
-        />
-      )}
-      <>
-        {(ifUserOnMobile || logOutPopUp) && (
-          <DarkOverlay ifValid={sidebarState || logOutPopUp} />
-        )}
-      </>
+      <SignOutOverlay
+        ifValid={logOutPopUp}
+        setLogOutPopUp={() => setLogOutPopUp(false)}
+      />
+      <>{ifUserOnMobile && <DarkOverlay ifValid={sidebarState} />}</>
       <header>
         <div className='header-title'></div>
         <SpinHamburger
@@ -60,13 +54,7 @@ const Chat = () => {
           sidebarState={sidebarState}
         />
       </header>
-      <main
-        className={
-          ifUserOnMobile && sidebarState
-            ? 'main-chat-mobile-sidebar'
-            : 'main-chat'
-        }
-      >
+      <main className='main-chat'>
         <section className='msgs-section'>
           {msgData.map((msg) => {
             return <UserMessages {...msg} key={msg.id} />

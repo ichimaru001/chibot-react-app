@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { FaSearch } from 'react-icons/fa'
 
-const TestSignOutOverlay = ({ ifValid }) => {
-  // const [ifValid, setIfValid] = useState(false)
+const TestSignOutOverlay = () => {
+  const [ifValid, setIfValid] = useState(false)
   const [showSignOut, setShowSignOut] = useState(false)
   const timeoutSignOutRef = useRef(null)
 
@@ -27,11 +27,11 @@ const TestSignOutOverlay = ({ ifValid }) => {
 
   return (
     <>
-      {/* <input
+      <input
         type='checkbox'
         checked={ifValid}
         onChange={() => setIfValid(!ifValid)}
-      /> */}
+      />
       <>
         {showSignOut && (
           <>

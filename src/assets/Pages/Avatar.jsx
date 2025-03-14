@@ -19,11 +19,10 @@ import EmailDivAvatar from '../Components/Avatar/EmailDivAvatar'
 import ImgDivAvatar from '../Components/Avatar/ImgDivAvatar'
 import UserNameDivAvatar from '../Components/Avatar/UserNameDivAvatar'
 import SpinHamburger from '../Components/Chat/SpinHamburger'
+import DarkOverlay from '../Components/Overlay/DarkOverlay'
 
 const Avatar = () => {
   const [sidebarState, setSidebarState] = useState(false)
-
-  const [showOverlay, setShowOverlay] = useState(false)
   const [ifUserOnMobile, setIfUserOnMobile] = useState(false)
   const [windowWidth, changeWindowWidth] = useState(window.innerWidth)
 
@@ -31,13 +30,15 @@ const Avatar = () => {
   const changeUserMobileState = () => {
     changeWindowWidth(window.innerWidth)
     if (windowWidth < 900) {
-      // console.log('setting if user on mobile true')
-
       setIfUserOnMobile(true)
     } else {
       setIfUserOnMobile(false)
     }
   }
+  // detect if user on mobile on mount
+  useEffect(() => {
+    changeUserMobileState()
+  }, [])
   // detects every time user resizes window
   useEffect(() => {
     window.addEventListener('resize', changeUserMobileState)
@@ -45,22 +46,6 @@ const Avatar = () => {
       window.removeEventListener('resize', changeUserMobileState)
     }
   }, [windowWidth])
-
-  useEffect(() => {
-    console.log(ifUserOnMobile)
-    console.log(sidebarState)
-
-    if (ifUserOnMobile && sidebarState) {
-      setShowOverlay(true)
-      console.log('set show overlay true')
-    } else {
-      console.log('setting show overlay false')
-
-      setTimeout(() => {
-        setShowOverlay(false)
-      }, 300)
-    }
-  }, [sidebarState, ifUserOnMobile])
 
   const [logOutPopUp, setLogOutPopUp] = useState(false)
 
@@ -202,60 +187,39 @@ const Avatar = () => {
 
   return (
     <>
-      {logOutPopUp && (
-        <SignOutOverlay
-          logOutPopUp={logOutPopUp}
-          setLogOutPopUp={(LogOutStatus) => setLogOutPopUp(LogOutStatus)}
+      <SignOutOverlay
+        ifValid={logOutPopUp}
+        setLogOutPopUp={() => setLogOutPopUp(false)}
+      />
+      <>{ifUserOnMobile && <DarkOverlay ifValid={sidebarState} />}</>
+      <header>
+        <div className='header-title'></div>
+        <SpinHamburger
+          setSideBarState={(status) => setSidebarState(status)}
+          sidebarState={sidebarState}
         />
-      )}
-      <>
-        <>
-          {showOverlay && (
-            <span
-              className={
-                ifUserOnMobile && sidebarState
-                  ? 'overlay-chat'
-                  : 'log-out-pop-up-overlay-appear  overlay-chat'
-              }
-            ></span>
-          )}
-        </>
-        {/* <span
-          className={
-            ifUserOnMobile && sidebarState
-              ? 'log-out-pop-up-overlay-appear overlay-chat'
-              : 'overlay-chat'
-          }
-        ></span> */}
-        <header>
-          <div className='header-title'></div>
-          <SpinHamburger
-            setSideBarState={(status) => setSidebarState(status)}
-            sidebarState={sidebarState}
-          />
-        </header>
-        <div
-          className={
-            logOutPopUp
-              ? 'log-out-pop-up-appear popup-div-avatar'
-              : 'popup-div-avatar'
-          }
-        >
-          <div className='popup-grid-div-avatar'>
-            <span
-              className={`${msgAnimPlaying && 'message-pop-up-animation'} ${
-                avatarPopUp && 'msg-pop-up-red-avatar'
-              } ${
-                statusMsgPopUp === 'OK'
-                  ? 'msg-pop-up-green-avatar message-pop-up-avatar'
-                  : 'msg-pop-up-red-avatar message-pop-up-avatar'
-              } message-pop-up-avatar`}
-            >
-              {textMsgPopUp}
-            </span>
-          </div>
+      </header>
+      <div
+        className={
+          logOutPopUp
+            ? 'log-out-pop-up-appear popup-div-avatar'
+            : 'popup-div-avatar'
+        }
+      >
+        <div className='popup-grid-div-avatar'>
+          <span
+            className={`${msgAnimPlaying && 'message-pop-up-animation'} ${
+              avatarPopUp && 'msg-pop-up-red-avatar'
+            } ${
+              statusMsgPopUp === 'OK'
+                ? 'msg-pop-up-green-avatar message-pop-up-avatar'
+                : 'msg-pop-up-red-avatar message-pop-up-avatar'
+            } message-pop-up-avatar`}
+          >
+            {textMsgPopUp}
+          </span>
         </div>
-      </>
+      </div>
       <main className='main-avatar'>
         <section className='middle-section-avatar'>
           <div className='main-div-avatar'>

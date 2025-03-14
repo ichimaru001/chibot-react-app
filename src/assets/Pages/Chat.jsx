@@ -11,6 +11,7 @@ import Sidebar from '../Components/Sidebar/Sidebar'
 import UserMessages from '../Components/Chat/UserMessages'
 import ChatBoxDiv from '../Components/Chat/ChatBoxDiv'
 import SpinHamburger from '../Components/Chat/SpinHamburger'
+import DarkOverlay from '../Components/Overlay/DarkOverlay'
 
 const Chat = () => {
   const [sidebarState, setSidebarState] = useState(false)
@@ -27,6 +28,10 @@ const Chat = () => {
       setIfUserOnMobile(false)
     }
   }
+  // detect if user on mobile on mount
+  useEffect(() => {
+    changeUserMobileState()
+  }, [])
   // detects every time user resizes window
   useEffect(() => {
     window.addEventListener('resize', changeUserMobileState)
@@ -43,7 +48,11 @@ const Chat = () => {
           setLogOutPopUp={() => setLogOutPopUp(!logOutPopUp)}
         />
       )}
-
+      <>
+        {(ifUserOnMobile || logOutPopUp) && (
+          <DarkOverlay ifValid={sidebarState || logOutPopUp} />
+        )}
+      </>
       <header>
         <div className='header-title'></div>
         <SpinHamburger

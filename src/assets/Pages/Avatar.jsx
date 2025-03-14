@@ -18,8 +18,50 @@ import PWDivAvatar from '../Components/Avatar/PWDivAvatar'
 import EmailDivAvatar from '../Components/Avatar/EmailDivAvatar'
 import ImgDivAvatar from '../Components/Avatar/ImgDivAvatar'
 import UserNameDivAvatar from '../Components/Avatar/UserNameDivAvatar'
+import SpinHamburger from '../Components/Chat/SpinHamburger'
 
 const Avatar = () => {
+  const [sidebarState, setSidebarState] = useState(false)
+
+  const [showOverlay, setShowOverlay] = useState(false)
+  const [ifUserOnMobile, setIfUserOnMobile] = useState(false)
+  const [windowWidth, changeWindowWidth] = useState(window.innerWidth)
+
+  // if window width < 900, detects user on mobile
+  const changeUserMobileState = () => {
+    changeWindowWidth(window.innerWidth)
+    if (windowWidth < 900) {
+      // console.log('setting if user on mobile true')
+
+      setIfUserOnMobile(true)
+    } else {
+      setIfUserOnMobile(false)
+    }
+  }
+  // detects every time user resizes window
+  useEffect(() => {
+    window.addEventListener('resize', changeUserMobileState)
+    return () => {
+      window.removeEventListener('resize', changeUserMobileState)
+    }
+  }, [windowWidth])
+
+  useEffect(() => {
+    console.log(ifUserOnMobile)
+    console.log(sidebarState)
+
+    if (ifUserOnMobile && sidebarState) {
+      setShowOverlay(true)
+      console.log('set show overlay true')
+    } else {
+      console.log('setting show overlay false')
+
+      setTimeout(() => {
+        setShowOverlay(false)
+      }, 300)
+    }
+  }, [sidebarState, ifUserOnMobile])
+
   const [logOutPopUp, setLogOutPopUp] = useState(false)
 
   const [userName, setUserName] = useState('Chibot-test01')
@@ -41,48 +83,6 @@ const Avatar = () => {
   const [textMsgPopUp, setTextMsgPopUp] = useState('')
   const [statusMsgPopUp, setStatusMsgPopUp] = useState('')
 
-  // const colorMsgPopUp = (msgPopUpElement) => {
-  //   if (statusMsgPopUp === 'OK') {
-  //     msgPopUpElement.classList.remove('msg-pop-up-red-avatar')
-  //     msgPopUpElement.classList.add('msg-pop-up-green-avatar')
-  //     // console.log('added green')
-  //   }
-  //   if (statusMsgPopUp === 'ERROR') {
-  //     msgPopUpElement.classList.remove('msg-pop-up-green-avatar')
-  //     msgPopUpElement.classList.add('msg-pop-up-red-avatar')
-  //     // console.log('added red')
-  //   }
-  // }
-  // const checkLogOutPopUp = () => {
-  //   const element1 = document.querySelector('.popup-div')
-  //   const element2 = document.querySelector('.overlay-chat')
-  //   if (logOutPopUp) {
-  //     element1.classList.add('log-out-pop-up-appear')
-  //     element2.classList.add('log-out-pop-up-appear')
-  //   }
-  // }
-  // const alreadyInAvatarWarning = () => {
-  //   setMsgAnimPlaying(true)
-  //   setAvatarPopUp(true)
-  // }
-  // const avatarSpanHighlight = () => {
-  //   const PFPSpan = document.getElementById('img-main-avatar-id')
-  //   if (isEditingPFP) {
-  //     PFPSpan.classList.add('img-main-avatar-activated')
-  //   } else {
-  //     PFPSpan.classList.remove('img-main-avatar-activated')
-  //   }
-  // }
-  // const expandPWDiv = () => {
-  //   const expandElement = document.querySelector(
-  //     '.subinfo-pw-expand-div-avatar'
-  //   )
-  //   if (isEditingPW) {
-  //     expandElement.classList.remove('subinfo-pw-expand-div-hidden')
-  //   } else {
-  //     expandElement.classList.add('subinfo-pw-expand-div-hidden')
-  //   }
-  // }
   const checkNeedSaving = () => {
     if (isEditingEmail) {
       setNeedSaving(true)
@@ -96,39 +96,13 @@ const Avatar = () => {
     } else if (isEditingPFP) {
       setNeedSaving(true)
       // console.log('pfp - need saving set to true')
-    } else if (
-      !isEditingEmail ||
-      !isEditingPW ||
-      !isEditingName ||
-      !isEditingPFP
-    ) {
+    } else {
       setNeedSaving(false)
     }
   }
-  // const showSaveChanges = () => {
-  //   const saveChangesElement = document.querySelector(
-  //     '.save-changes-div-avatar'
-  //   )
-
-  //   if (isEditingEmail || isEditingPFP || isEditingName) {
-  //     saveChangesElement.classList.add('save-changes-editing-email')
-  //   } else {
-  //     saveChangesElement.classList.remove('save-changes-editing-email')
-  //   }
-
-  //   if (needSaving) {
-  //     saveChangesElement.classList.remove('save-changes-div-hidden-avatar')
-  //     // console.log('showing save changes div')
-  //   } else {
-  //     saveChangesElement.classList.add('save-changes-div-hidden-avatar')
-  //     // console.log('hiding save changes div')
-  //   }
-  // }
   const saveChangesFunc = () => {
-    // const msgPopUpElement = document.querySelector('.message-pop-up-avatar')
     if (confirmSaving) {
       setStatusMsgPopUp('OK')
-      // colorMsgPopUp(msgPopUpElement)
       // console.log('click save - false')
       setClickSave(false)
       // console.log('set all edits false')
@@ -137,14 +111,11 @@ const Avatar = () => {
       setIsEditingPFP(false)
       if (isEditingPW) {
         setIsEditingPW(false)
-        // expandPWDiv()
       }
     } else {
       // console.log('error occurred!')
       setTextMsgPopUp('Error Occurred')
       setStatusMsgPopUp('ERROR')
-      // colorMsgPopUp(msgPopUpElement)
-
       // console.log('click save - false')
       setClickSave(false)
       // !! ^ to show msg again
@@ -192,15 +163,7 @@ const Avatar = () => {
 
   // initialising avatar
   useEffect(() => {
-    // checks if user is attempting to log out
-    // checkLogOutPopUp()
-
-    // darkens avatar pfp circle
-    // avatarSpanHighlight()
-
     checkNeedSaving()
-    // showSaveChanges()
-    // expandPWDiv()
   })
   // save changes func
   useEffect(() => {
@@ -210,21 +173,11 @@ const Avatar = () => {
       saveChangesFunc()
     }
   }, [confirmSaving, clickSave])
+
   // plays pop up animation
   useEffect(() => {
     if (msgAnimPlaying || avatarPopUp) {
-      const msgPopUpElement = document.querySelector('.message-pop-up-avatar')
-      // msgPopUpElement.classList.add('message-pop-up-animation')
-
-      // if (avatarPopUp) {
-      //   //   const msgPopUpElement = document.querySelector('.message-pop-up-avatar')
-      //   setTextMsgPopUp('Already in avatar')
-      //   //   msgPopUpElement.classList.remove('msg-pop-up-green-avatar')
-      //   //   msgPopUpElement.classList.add('msg-pop-up-red-avatar')
-      // }
-
       setTimeout(() => {
-        // msgPopUpElement.classList.remove('message-pop-up-animation')
         setMsgAnimPlaying(false)
         setAvatarPopUp(false)
         // console.log('set anim false')
@@ -256,6 +209,31 @@ const Avatar = () => {
         />
       )}
       <>
+        <>
+          {showOverlay && (
+            <span
+              className={
+                ifUserOnMobile && sidebarState
+                  ? 'overlay-chat'
+                  : 'log-out-pop-up-overlay-appear  overlay-chat'
+              }
+            ></span>
+          )}
+        </>
+        {/* <span
+          className={
+            ifUserOnMobile && sidebarState
+              ? 'log-out-pop-up-overlay-appear overlay-chat'
+              : 'overlay-chat'
+          }
+        ></span> */}
+        <header>
+          <div className='header-title'></div>
+          <SpinHamburger
+            setSideBarState={(status) => setSidebarState(status)}
+            sidebarState={sidebarState}
+          />
+        </header>
         <div
           className={
             logOutPopUp
@@ -349,9 +327,6 @@ const Avatar = () => {
                     setIsEditingName(false)
                     setIsEditingEmail(false)
                     setIsEditingPFP(false)
-                    if (isEditingPW) {
-                      // expandPWDiv()
-                    }
                   }}
                   saveChangesFunc={() => {
                     checkEditIfSave()
@@ -376,7 +351,7 @@ const Avatar = () => {
             setMsgAnimPlaying(true)
             setAvatarPopUp(true)
           }}
-        ></Sidebar>
+        />
       </main>
     </>
   )

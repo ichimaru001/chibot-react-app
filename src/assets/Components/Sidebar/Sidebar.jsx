@@ -13,14 +13,8 @@ const Sidebar = ({
 
   return (
     <span
-      id={sidebarType === 'chat' ? 'sidebar-chat' : 'sidebar-plain'}
-      className={
-        sidebarType === 'chat'
-          ? sidebarState
-            ? 'sidebar'
-            : 'sidebar sidebar-hidden'
-          : 'sidebar'
-      }
+      id={'sidebar-chat'}
+      className={sidebarState ? 'sidebar' : 'sidebar sidebar-hidden'}
     >
       <div className='sidebar-icons-div'>
         <span

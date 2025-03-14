@@ -24,13 +24,13 @@ const SignOutOverlay = ({ logOutPopUp, setLogOutPopUp }) => {
           </div>
         </div>
       </div>
-      <span
+      {/* <span
         className={
           logOutPopUp
             ? 'log-out-pop-up-overlay-appear overlay-chat'
             : 'overlay-chat'
         }
-      ></span>
+      ></span> */}
       {/* <span className='overlay-chat'></span> */}
     </>
   )

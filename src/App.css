@@ -51,19 +51,21 @@ body {
   opacity: 1;
 }
 .log-out-pop-up-overlay-appear {
-  animation-delay: 0.8s;
+  /* animation-delay: 0.8s;
   animation-timing-function: ease;
-  animation: fade-LOPU-appear 0.8s;
-  opacity: 1;
+  animation: fade-LOPU-appear 0.8s; */
+  /* visibility: visible; */
+  opacity: 0;
+  transition: 0.3s ease;
 }
-@keyframes fade-LOPU-appear {
+/* @keyframes fade-LOPU-appear {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
   }
-}
+} */
 
 .chat[type='text'] {
   padding: 0.6rem 1.2rem;
@@ -690,12 +692,13 @@ main {
 /* -overlay */
 .overlay-chat {
   position: fixed;
-  z-index: 2;
+  z-index: 1;
   background-color: rgba(30, 24, 37, 0.8);
   width: 100vw;
   height: 100vh;
-  /* opacity: 0; */
-  /* transition: 0.8s ease; */
+  /* visibility: hidden; */
+  opacity: 1;
+  transition: 0.3s ease;
 }
 .popup-div {
   position: fixed;
@@ -703,7 +706,7 @@ main {
   justify-content: center;
   width: 100vw;
   height: 25vh;
-  z-index: 3;
+  z-index: 5;
   /* opacity: 0; */
   /* justify-content: center;
   align-items: center; */
@@ -724,6 +727,7 @@ main {
   width: 22rem;
   height: 16rem;
   opacity: 100%;
+
   /* top: 36%;
   left: 41%; */
 }
@@ -767,6 +771,7 @@ main {
   position: relative;
   margin-top: 5.4rem;
   margin-bottom: 5rem;
+
   width: 40vw;
   height: 2000px;
   z-index: -1;
@@ -786,7 +791,7 @@ main {
   padding-top: 3.4rem;
   left: -0.2rem;
   /* top: 3.5rem; */
-  z-index: 0;
+  z-index: 2;
   transition: 1.8s ease;
 }
 .sidebar-hidden {
@@ -878,12 +883,12 @@ main {
   right: 0;
   background-color: var(--primary-500);
   height: 3.5rem;
-  z-index: 1;
+  z-index: 3;
 }
 
 .spin-hamburger {
   position: relative;
-  z-index: 1;
+  z-index: 3;
 }
 
 .spin-hamburger-circle {
@@ -958,10 +963,11 @@ main {
   height: 4.6rem;
 }
 .chat-align {
-  width: clamp(30rem, 60vw, 70em);
+  width: clamp(30rem, 60vw, 60rem);
   position: relative;
   top: 1rem;
-  left: clamp(6rem, 18vw, 20rem);
+
+  left: clamp(6rem, 18vw, 14rem);
   transition: 0.6s ease-out;
 }
 .chat {
@@ -1027,3 +1033,59 @@ main {
   align-items: start;
 }
 /* chat */
+
+/* test */
+.overlay-span {
+  opacity: 1;
+  /* z-index: 1; */
+  animation-name: fade-in-overlay;
+  animation-timing-function: ease-in-out;
+  animation-duration: 0.6s;
+  /* transition: 0.6s ease-in-out; */
+}
+.overlay-span-hidden {
+  opacity: 0;
+  /* z-index: 1; */
+  animation-name: fade-out-overlay;
+  animation-timing-function: ease-in-out;
+  animation-duration: 0.6s;
+}
+
+.signout-overlay {
+  opacity: 1;
+  animation-name: fade-in-overlay;
+  animation-timing-function: ease-out;
+  animation-duration: 0.3s;
+}
+.signout-overlay-hidden {
+  opacity: 0;
+  animation-name: fade-out-overlay;
+  animation-timing-function: ease-in;
+  animation-duration: 0.2s;
+}
+@keyframes fade-in-overlay {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-out-overlay {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* responsive screen */
+@media screen and (max-width: 620px) {
+  .msgs-section {
+    margin-right: 4rem;
+  }
+  .chat-align {
+    margin-left: 2rem;
+  }
+}

@@ -11,7 +11,9 @@ const PWDivAvatar = ({ isEditingPWComp, userPWComp }) => {
           type='text'
         />
       ) : (
-        <span className='subinfo-input-avatar'>{userPWComp}</span>
+        <span className='subinfo-input-avatar subinfo-input-avatar-pw'>
+          {userPWComp}
+        </span>
       )}
     </div>
   )

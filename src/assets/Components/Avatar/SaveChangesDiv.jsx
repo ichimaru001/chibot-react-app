@@ -24,7 +24,7 @@ const SaveChangesDiv = ({
           saveChangesFunc()
         }}
       >
-        Save changes
+        Save
       </button>
       <button
         className='btn-cancel-avatar'

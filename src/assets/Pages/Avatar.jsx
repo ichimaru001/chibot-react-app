@@ -29,7 +29,7 @@ const Avatar = () => {
   // if window width < 900, detects user on mobile
   const changeUserMobileState = () => {
     changeWindowWidth(window.innerWidth)
-    if (windowWidth < 900) {
+    if (windowWidth < 1100) {
       setIfUserOnMobile(true)
     } else {
       setIfUserOnMobile(false)

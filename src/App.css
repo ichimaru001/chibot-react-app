@@ -519,7 +519,7 @@ main {
 }
 .subinfo-main-div-avatar {
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 3fr 1fr;
 }
 .subinfo-icon-avatar {
   width: 1.4rem;
@@ -724,9 +724,8 @@ main {
 }
 .signout-popup-chat {
   position: absolute;
-  margin-right: 1rem;
   display: flex;
-  margin-top: 18rem;
+  margin-top: 19rem;
   /* grid-template-rows: 1fr 1fr; */
   flex-direction: column;
   row-gap: 3rem;
@@ -1092,7 +1091,74 @@ main {
 }
 
 /* responsive screen */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 768px) {
+  /* START avatar */
+  .main-div-avatar {
+    margin-top: 10rem;
+    width: 34rem;
+    height: 36rem;
+    display: grid;
+    grid-template-rows: 0.6fr 3fr;
+  }
+  .username-main-div-avatar {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.3rem;
+  }
+  .username-main-avatar {
+    font-size: 2.1rem;
+    height: auto;
+  }
+  .username-input-main-avatar {
+    display: block;
+    font-size: 2.1rem;
+    height: auto;
+  }
+
+  .username-main-underline-avatar {
+    height: 0.08rem;
+    width: 8.5rem;
+  }
+  .info-main-div-avatar {
+    display: flex;
+    flex-direction: row;
+    /* grid-template-columns: 1fr 1fr; */
+    column-gap: 3rem;
+  }
+  .img-main-div-avatar {
+    width: 14rem;
+    height: 13rem;
+    margin-left: 0.5rem;
+  }
+  .img-main-icon-avatar {
+    width: 6rem;
+    height: 6rem;
+    top: 27%;
+    left: 29%;
+  }
+  .subinfo-important-div-avatar {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    /* grid-template-rows: 0.5fr 1fr; */
+  }
+  .subinfo-input-avatar {
+    display: block;
+    color: var(--complement-100);
+    width: 11rem;
+  }
+  .subinfo-pw-main-div-avatar {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.8rem;
+    /* grid-template-rows: 0.5fr 0.7fr; */
+  }
+  .save-changes-div-avatar {
+    margin-top: 1.4rem;
+  }
+  /* END avatar */
+}
+@media screen and (max-width: 500px) {
   /* START avatar */
   .main-div-avatar {
     margin-top: 10rem;

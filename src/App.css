@@ -221,12 +221,12 @@ main {
   letter-spacing: 0.1rem;
   font-size: clamp(1.6rem, 4vw, 4rem);
   /* font-size: 4.2rem; */
-  width: auto;
+  width: 21rem;
   color: var(--complement-500);
 }
 .home-additional-info {
   font-weight: 500;
-  font-size: clamp(1rem, 1.4vw, 2rem);
+  font-size: clamp(0.86rem, 1.4vw, 2rem);
   /* font-size: 1.4rem; */
   letter-spacing: 0.06rem;
   margin-top: 1.2rem;
@@ -283,7 +283,7 @@ main {
 .header-signin {
   color: var(--complement-400);
   margin-bottom: 0.36rem;
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.05rem;
 }
@@ -297,7 +297,7 @@ main {
   transition: 0.06s ease-out;
   background-color: var(--complement-500);
   &:focus {
-    outline: 0.14rem solid var(--complement-400);
+    outline: 2px solid var(--complement-400);
   }
 }
 .fields-div-signin {
@@ -346,7 +346,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: end;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 .upper-header-signin {
   color: var(--complement-400);
@@ -382,7 +382,7 @@ main {
   color: var(--primary-300);
   font-weight: 550;
   font-size: 0.66rem;
-  margin-top: 0.4rem;
+  margin-top: 0.5rem;
 
   cursor: pointer;
 
@@ -1072,7 +1072,7 @@ main {
 .signout-overlay-hidden {
   opacity: 0;
   animation-name: fade-out-overlay;
-  animation-timing-function: ease-in;
+  animation-timing-function: ease-in-out;
   animation-duration: 0.2s;
 }
 @keyframes fade-in-overlay {
@@ -1094,6 +1094,12 @@ main {
 
 /* responsive screen */
 @media screen and (max-width: 1064px) {
+  /* START home page */
+  .home-header {
+    width: 18rem;
+  }
+  /* END home page */
+
   /* START msg avatar pop up */
   .message-pop-up-avatar {
     margin-top: 9.6rem;
@@ -1169,6 +1175,12 @@ main {
   /* END avatar */
 }
 @media screen and (max-width: 808px) {
+  /* START home page */
+  .home-header {
+    width: 14rem;
+  }
+  /* END home page */
+
   /* START msg avatar pop up */
   .message-pop-up-avatar {
     margin-top: 10rem;
@@ -1245,7 +1257,13 @@ main {
   }
   /* END avatar */
 }
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 540px) {
+  /* START home page */
+  .home-header {
+    width: auto;
+  }
+  /* END home page */
+
   /* START avatar */
   .main-div-avatar {
     margin-top: 10rem;

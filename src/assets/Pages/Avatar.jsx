@@ -1,9 +1,8 @@
 // FOCUS/GOAL
-// 1.  ...
+// 1.  make the 'darken screen when sidebar is being used' functionality into a component
 
 // NOTES
 // use github to upload project
-// avoid working a lot with user pfp functionality until working with backend
 
 // import react n friends
 import { useState, useEffect } from 'react'

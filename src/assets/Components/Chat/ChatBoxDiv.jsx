@@ -1,14 +1,7 @@
-const ChatBoxDiv = ({ sidebarState, ifUserOnMobile }) => {
+const ChatBoxDiv = () => {
   return (
     <div className='chat-box'>
-      <span
-        // className={
-        //   ifUserOnMobile && sidebarState
-        //     ? 'chat-box-hidden chat-align'
-        //     : 'chat-align'
-        // }
-        className='chat-align'
-      >
+      <span className='chat-align'>
         <input className='chat' type='text' id='chatbox-chat' />
         <div className='label-chat' htmlFor='chatbox-chat'>
           Chat here

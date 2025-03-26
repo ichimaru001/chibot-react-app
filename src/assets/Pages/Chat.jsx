@@ -12,33 +12,11 @@ import UserMessages from '../Components/Chat/UserMessages'
 import ChatBoxDiv from '../Components/Chat/ChatBoxDiv'
 import SpinHamburger from '../Components/Chat/SpinHamburger'
 import DarkOverlay from '../Components/Overlay/DarkOverlay'
+import MainMobileOverlay from '../Components/Overlay/MainMobileOverlay'
 
 const Chat = () => {
   const [sidebarState, setSidebarState] = useState(false)
-  const [ifUserOnMobile, setIfUserOnMobile] = useState(false)
-  const [windowWidth, changeWindowWidth] = useState(window.innerWidth)
   const [logOutPopUp, setLogOutPopUp] = useState(false)
-
-  // if window width < 900, detects user on mobile
-  const changeUserMobileState = () => {
-    changeWindowWidth(window.innerWidth)
-    if (windowWidth < 900) {
-      setIfUserOnMobile(true)
-    } else {
-      setIfUserOnMobile(false)
-    }
-  }
-  // detect if user on mobile on mount
-  useEffect(() => {
-    changeUserMobileState()
-  }, [])
-  // detects every time user resizes window
-  useEffect(() => {
-    window.addEventListener('resize', changeUserMobileState)
-    return () => {
-      window.removeEventListener('resize', changeUserMobileState)
-    }
-  }, [windowWidth])
 
   return (
     <>
@@ -46,7 +24,7 @@ const Chat = () => {
         ifValid={logOutPopUp}
         setLogOutPopUp={() => setLogOutPopUp(false)}
       />
-      <>{ifUserOnMobile && <DarkOverlay ifValid={sidebarState} />}</>
+      <MainMobileOverlay sidebarState={sidebarState} />
       <header>
         <div className='header-title'></div>
         <SpinHamburger
@@ -67,10 +45,7 @@ const Chat = () => {
         ></Sidebar>
       </main>
       <footer>
-        <ChatBoxDiv
-          sidebarState={sidebarState}
-          ifUserOnMobile={ifUserOnMobile}
-        />
+        <ChatBoxDiv sidebarState={sidebarState} />
       </footer>
     </>
   )

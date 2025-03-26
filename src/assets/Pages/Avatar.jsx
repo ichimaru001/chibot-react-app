@@ -18,33 +18,10 @@ import EmailDivAvatar from '../Components/Avatar/EmailDivAvatar'
 import ImgDivAvatar from '../Components/Avatar/ImgDivAvatar'
 import UserNameDivAvatar from '../Components/Avatar/UserNameDivAvatar'
 import SpinHamburger from '../Components/Chat/SpinHamburger'
-import DarkOverlay from '../Components/Overlay/DarkOverlay'
+import MainMobileOverlay from '../Components/Overlay/MainMobileOverlay'
 
 const Avatar = () => {
   const [sidebarState, setSidebarState] = useState(false)
-  const [ifUserOnMobile, setIfUserOnMobile] = useState(false)
-  const [windowWidth, changeWindowWidth] = useState(window.innerWidth)
-
-  // if window width < 900, detects user on mobile
-  const changeUserMobileState = () => {
-    changeWindowWidth(window.innerWidth)
-    if (windowWidth < 1100) {
-      setIfUserOnMobile(true)
-    } else {
-      setIfUserOnMobile(false)
-    }
-  }
-  // detect if user on mobile on mount
-  useEffect(() => {
-    changeUserMobileState()
-  }, [])
-  // detects every time user resizes window
-  useEffect(() => {
-    window.addEventListener('resize', changeUserMobileState)
-    return () => {
-      window.removeEventListener('resize', changeUserMobileState)
-    }
-  }, [windowWidth])
 
   const [logOutPopUp, setLogOutPopUp] = useState(false)
 
@@ -190,7 +167,7 @@ const Avatar = () => {
         ifValid={logOutPopUp}
         setLogOutPopUp={() => setLogOutPopUp(false)}
       />
-      <>{ifUserOnMobile && <DarkOverlay ifValid={sidebarState} />}</>
+      <MainMobileOverlay sidebarState={sidebarState} />
       <header>
         <div className='header-title'></div>
         <SpinHamburger

@@ -538,7 +538,7 @@ main {
 }
 .subinfo-important-div-avatar {
   display: grid;
-  grid-template-rows: 0.5fr 1fr;
+  grid-template-rows: 6.1rem 12.8rem 2rem;
 }
 .subinfo-span-avatar {
   font-weight: 650;

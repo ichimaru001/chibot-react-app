@@ -2,19 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 
 const DarkOverlay = ({ ifValid }) => {
   const [showOverlay, setShowOverlay] = useState(false)
-  // const [ifValid, setIfValid] = useState(false)
   const timeoutOverlayRef = useRef(null)
-
-  // const settingIfValid = () => {
-  //   console.log(`ifValid : ${!ifValid}`)
-  //   setIfValid(!ifValid)
-  // }
-  // useEffect(() => {
-  //   window.addEventListener('click', settingIfValid)
-  //   return () => {
-  //     window.removeEventListener('click', settingIfValid)
-  //   }
-  // })
 
   useEffect(() => {
     if (ifValid) {

@@ -3,6 +3,7 @@
 
 // import react n friends
 import { useState, useEffect } from 'react'
+import { useGlobalContext } from '../../Context'
 
 // import data/components
 import msgData from '../../data'
@@ -15,8 +16,8 @@ import DarkOverlay from '../Components/Overlay/DarkOverlay'
 import MainMobileOverlay from '../Components/Overlay/MainMobileOverlay'
 
 const Chat = () => {
-  const [sidebarState, setSidebarState] = useState(false)
-  const [logOutPopUp, setLogOutPopUp] = useState(false)
+  const { sidebarState, setSidebarState, logOutPopUp, setLogOutPopUp } =
+    useGlobalContext()
 
   return (
     <>

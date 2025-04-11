@@ -6,6 +6,7 @@
 
 // import react n friends
 import { useState, useEffect } from 'react'
+import { useGlobalContext } from '../../Context'
 // icons
 import { FaEdit } from 'react-icons/fa'
 // data/components
@@ -21,9 +22,8 @@ import SpinHamburger from '../Components/Chat/SpinHamburger'
 import MainMobileOverlay from '../Components/Overlay/MainMobileOverlay'
 
 const Avatar = () => {
-  const [sidebarState, setSidebarState] = useState(false)
-
-  const [logOutPopUp, setLogOutPopUp] = useState(false)
+  const { sidebarState, setSidebarState, logOutPopUp, setLogOutPopUp } =
+    useGlobalContext()
 
   const [userName, setUserName] = useState('Chibot-test01')
   const [userEmail, setUserEmail] = useState('ichi-testing@test.com')
@@ -285,6 +285,7 @@ const Avatar = () => {
         <Sidebar
           setLogOutPopUp={() => setLogOutPopUp(!logOutPopUp)}
           sidebarType={'avatar'}
+          sidebarState={sidebarState}
           avatarWarning={() => {
             // already in avatar warning
             setTextMsgPopUp('Already in avatar')
